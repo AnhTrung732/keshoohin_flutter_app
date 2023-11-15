@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1017087612348",
+    "project_id": "keshoohin-flutter-app",
+    "storage_bucket": "keshoohin-flutter-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1017087612348:android:f8776486b78075591107b9",
+        "android_client_info": {
+          "package_name": "com.example.keshoohin_flutter_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyApTGEfRFTwFun0nHFUW90tMoQFgMeFIsA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
