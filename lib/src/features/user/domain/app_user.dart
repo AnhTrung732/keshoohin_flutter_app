@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:keshoohin_flutter_app/src/features/user/domain/detail/detail.dart';
 
 part 'app_user.freezed.dart';
 part 'app_user.g.dart';
@@ -10,6 +11,7 @@ class AppUser with _$AppUser {
     String? email,
     String? phone,
     String? name,
+    UserDetail? userDetail,
   }) = _AppUser;
 
   factory AppUser.fromJson(Map<String, dynamic> json) =>

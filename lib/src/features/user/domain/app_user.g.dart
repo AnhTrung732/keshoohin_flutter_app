@@ -12,6 +12,9 @@ _$AppUserImpl _$$AppUserImplFromJson(Map<String, dynamic> json) =>
       email: json['email'] as String?,
       phone: json['phone'] as String?,
       name: json['name'] as String?,
+      userDetail: json['userDetail'] == null
+          ? null
+          : UserDetail.fromJson(json['userDetail'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$AppUserImplToJson(_$AppUserImpl instance) =>
@@ -20,4 +23,5 @@ Map<String, dynamic> _$$AppUserImplToJson(_$AppUserImpl instance) =>
       'email': instance.email,
       'phone': instance.phone,
       'name': instance.name,
+      'userDetail': instance.userDetail,
     };

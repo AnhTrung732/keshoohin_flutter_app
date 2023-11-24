@@ -1,5 +1,5 @@
 abstract class SharedPreferencesRepository {
-  Future<bool?> getCoachGuideState();
+  Future<bool> getCoachGuideState();
   Future<bool?> setCoachGuideState(bool newState);
   Future<bool?> clearCoachGuideState(bool newState);
   // Future<bool> saveLoginState(AppUser account);

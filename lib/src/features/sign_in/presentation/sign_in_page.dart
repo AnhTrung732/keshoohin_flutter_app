@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:keshoohin_flutter_app/src/features/user/domain/app_user.dart';
-import 'package:keshoohin_flutter_app/src/features/user/infrastructure/user_provider.dart';
 import 'package:keshoohin_flutter_app/src/services/auth/firebase_oauth_provider.dart';
 import 'package:keshoohin_flutter_app/src/services/routing/route_names.dart';
 import 'package:keshoohin_flutter_app/src/themes/theme.dart';
@@ -334,7 +333,7 @@ class _SignInPageState extends ConsumerState<SignInPage> {
         .signInWithGoogle()
         .then((value) {
       print(value);
-      context.goNamed(RouteNames.productListPage);
+      context.goNamed(RouteNames.homePage);
     });
   }
 }

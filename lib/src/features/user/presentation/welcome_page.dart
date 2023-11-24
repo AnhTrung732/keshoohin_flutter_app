@@ -3,8 +3,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:keshoohin_flutter_app/src/features/product_list/presentation/product_list_page.dart';
-import 'package:keshoohin_flutter_app/src/features/user/infrastructure/user_provider.dart';
+import 'package:keshoohin_flutter_app/src/app.dart';
+import 'package:keshoohin_flutter_app/src/features/collection/presentation/home_page.dart';
 import 'package:keshoohin_flutter_app/src/features/user/presentation/controller/welcome_page_controller.dart';
 import 'package:keshoohin_flutter_app/src/services/routing/route_names.dart';
 
@@ -29,7 +29,7 @@ class _WelcomePageState extends ConsumerState<WelcomePage> {
                     .checkHasUser() ==
                 false
             ? const WelcomeScreen()
-            : const ProductListPage();
+            : const KeshoohinApp();
       },
       error: (error, stackTrace) {
         // Handle the case when the future encounters an error
@@ -199,7 +199,7 @@ class WelcomeActionRow extends StatelessWidget {
                 while (context.canPop()) {
                   context.pop();
                 }
-                context.pushReplacementNamed(RouteNames.productListPage);
+                context.pushReplacementNamed(RouteNames.homePage);
               },
               child: Text("skip".tr(),
                   style: const TextStyle(color: Colors.white)),
