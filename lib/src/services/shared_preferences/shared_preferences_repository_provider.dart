@@ -10,11 +10,4 @@ part 'shared_preferences_repository_provider.g.dart';
 @riverpod
 Future<SharedPreferencesRepository> sharedPreferencesRepository(
         SharedPreferencesRepositoryRef ref) async =>
-    SharedPreferencesImpl(
-        ref.watch(sharedPreferencesProvider).maybeWhen(
-            data: (value) => value ,
-            orElse: () {
-                throw Exception("SharedPreferences is not available");
-            },)
-    );
-
+    SharedPreferencesImpl(ref);

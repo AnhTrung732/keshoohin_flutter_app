@@ -7,7 +7,7 @@ part of 'welcome_page_controller.dart';
 // **************************************************************************
 
 String _$welcomePageControllerHash() =>
-    r'6c9d5e541007c83a7b65c180b498b34f2ae7c12b';
+    r'3bace622ffa9746c92d91ccd036909bb69ffef99';
 
 /// See also [WelcomePageController].
 @ProviderFor(WelcomePageController)

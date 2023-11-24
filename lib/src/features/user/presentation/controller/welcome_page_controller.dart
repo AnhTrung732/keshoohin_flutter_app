@@ -13,19 +13,9 @@ class WelcomePageController extends _$WelcomePageController {
     // no-op
   }
 
-  Future<bool?> checkHasUser() async {
+  Future<AsyncValue<bool>> checkHasUser() async {
     final userService = ref.read(userServiceProvider);
-
-    try {
-      state = const AsyncLoading();
-      final hasUser = await AsyncValue.guard(() => userService.maybeWhen(
-            data: (value) => value.hasUser(),
-            orElse: () {
-              throw Exception("userServiceProvider is not available");
-            },
-          ));
-    } catch (error) {
-      // Handle error (optional)
-    }
+    //state = const AsyncLoading();
+    return await AsyncValue.guard(() => userService.value!.hasUser());
   }
 }

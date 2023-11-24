@@ -24,6 +24,7 @@ mixin _$AppUser {
   String? get email => throw _privateConstructorUsedError;
   String? get phone => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
+  UserDetail? get userDetail => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +36,14 @@ abstract class $AppUserCopyWith<$Res> {
   factory $AppUserCopyWith(AppUser value, $Res Function(AppUser) then) =
       _$AppUserCopyWithImpl<$Res, AppUser>;
   @useResult
-  $Res call({String? idUser, String? email, String? phone, String? name});
+  $Res call(
+      {String? idUser,
+      String? email,
+      String? phone,
+      String? name,
+      UserDetail? userDetail});
+
+  $UserDetailCopyWith<$Res>? get userDetail;
 }
 
 /// @nodoc
@@ -55,6 +63,7 @@ class _$AppUserCopyWithImpl<$Res, $Val extends AppUser>
     Object? email = freezed,
     Object? phone = freezed,
     Object? name = freezed,
+    Object? userDetail = freezed,
   }) {
     return _then(_value.copyWith(
       idUser: freezed == idUser
@@ -73,7 +82,23 @@ class _$AppUserCopyWithImpl<$Res, $Val extends AppUser>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
+      userDetail: freezed == userDetail
+          ? _value.userDetail
+          : userDetail // ignore: cast_nullable_to_non_nullable
+              as UserDetail?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $UserDetailCopyWith<$Res>? get userDetail {
+    if (_value.userDetail == null) {
+      return null;
+    }
+
+    return $UserDetailCopyWith<$Res>(_value.userDetail!, (value) {
+      return _then(_value.copyWith(userDetail: value) as $Val);
+    });
   }
 }
 
@@ -84,7 +109,15 @@ abstract class _$$AppUserImplCopyWith<$Res> implements $AppUserCopyWith<$Res> {
       __$$AppUserImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? idUser, String? email, String? phone, String? name});
+  $Res call(
+      {String? idUser,
+      String? email,
+      String? phone,
+      String? name,
+      UserDetail? userDetail});
+
+  @override
+  $UserDetailCopyWith<$Res>? get userDetail;
 }
 
 /// @nodoc
@@ -102,6 +135,7 @@ class __$$AppUserImplCopyWithImpl<$Res>
     Object? email = freezed,
     Object? phone = freezed,
     Object? name = freezed,
+    Object? userDetail = freezed,
   }) {
     return _then(_$AppUserImpl(
       idUser: freezed == idUser
@@ -120,6 +154,10 @@ class __$$AppUserImplCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
+      userDetail: freezed == userDetail
+          ? _value.userDetail
+          : userDetail // ignore: cast_nullable_to_non_nullable
+              as UserDetail?,
     ));
   }
 }
@@ -127,7 +165,8 @@ class __$$AppUserImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$AppUserImpl implements _AppUser {
-  _$AppUserImpl({this.idUser, this.email, this.phone, this.name});
+  _$AppUserImpl(
+      {this.idUser, this.email, this.phone, this.name, this.userDetail});
 
   factory _$AppUserImpl.fromJson(Map<String, dynamic> json) =>
       _$$AppUserImplFromJson(json);
@@ -140,10 +179,12 @@ class _$AppUserImpl implements _AppUser {
   final String? phone;
   @override
   final String? name;
+  @override
+  final UserDetail? userDetail;
 
   @override
   String toString() {
-    return 'AppUser(idUser: $idUser, email: $email, phone: $phone, name: $name)';
+    return 'AppUser(idUser: $idUser, email: $email, phone: $phone, name: $name, userDetail: $userDetail)';
   }
 
   @override
@@ -154,12 +195,15 @@ class _$AppUserImpl implements _AppUser {
             (identical(other.idUser, idUser) || other.idUser == idUser) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.phone, phone) || other.phone == phone) &&
-            (identical(other.name, name) || other.name == name));
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.userDetail, userDetail) ||
+                other.userDetail == userDetail));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, idUser, email, phone, name);
+  int get hashCode =>
+      Object.hash(runtimeType, idUser, email, phone, name, userDetail);
 
   @JsonKey(ignore: true)
   @override
@@ -180,7 +224,8 @@ abstract class _AppUser implements AppUser {
       {final String? idUser,
       final String? email,
       final String? phone,
-      final String? name}) = _$AppUserImpl;
+      final String? name,
+      final UserDetail? userDetail}) = _$AppUserImpl;
 
   factory _AppUser.fromJson(Map<String, dynamic> json) = _$AppUserImpl.fromJson;
 
@@ -192,6 +237,8 @@ abstract class _AppUser implements AppUser {
   String? get phone;
   @override
   String? get name;
+  @override
+  UserDetail? get userDetail;
   @override
   @JsonKey(ignore: true)
   _$$AppUserImplCopyWith<_$AppUserImpl> get copyWith =>

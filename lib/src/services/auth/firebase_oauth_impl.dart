@@ -3,9 +3,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:keshoohin_flutter_app/src/features/user/domain/app_user.dart';
-import 'package:keshoohin_flutter_app/src/features/user/infrastructure/user.dart';
-import 'package:keshoohin_flutter_app/src/constants/constants.dart';
-import 'package:keshoohin_flutter_app/src/services/auth/firebase_oauth.dart';
+import 'package:keshoohin_flutter_app/src/features/user/infrastructure/user/user.dart';
+import 'package:keshoohin_flutter_app/src/utils/constants/api_config.dart';
+import 'package:keshoohin_flutter_app/src/services/auth/firebase_oauth_repository.dart';
 import 'package:keshoohin_flutter_app/src/utils/firebase_option.dart';
 
 class FirebaseAuthenticationImpl extends FirebaseAuthenticationRepository {
@@ -96,7 +96,7 @@ class FirebaseAuthenticationImpl extends FirebaseAuthenticationRepository {
   Future<Response<Map<String, dynamic>>> _sendLoginRequest(
       Map<String, dynamic> subbody) async {
     return await dio.post(
-      '$baseUrl/api/login',
+      ApiConfig.postLogin.toString(),
       data: {'user': subbody},
       options: Options(
         headers: {'Content-Type': 'application/json'},
@@ -105,11 +105,6 @@ class FirebaseAuthenticationImpl extends FirebaseAuthenticationRepository {
   }
 
   Future<AppUser> _createAccountFromResponse(Map<String, dynamic> responseData) async {
-    print("Error_1");
-    print(responseData['IDCus'].toString() +
-        responseData['Email'].toString() +
-        responseData['PhoneNumber'].toString() +
-        responseData['FirstName'].toString());
     return AppUser(
       idUser: responseData['IDCus'].toString(),
       email: responseData['Email'].toString(),
@@ -119,12 +114,7 @@ class FirebaseAuthenticationImpl extends FirebaseAuthenticationRepository {
   }
 
   Future<void> _saveUserAccountToSharedPreferences(AppUser appUser) async {
-    print("Error_2");
-    await userRepository.saveCurrentUser(appUser);
-    print("Error_3");
-    // final currentUser = await userRepository.getCurrentUser();
-    // print("ID");
-    // print(currentUser?.idUser.toString());
+    await userRepository.setCurrentUser(appUser);
   }
 
   void _handleError(dynamic error) {

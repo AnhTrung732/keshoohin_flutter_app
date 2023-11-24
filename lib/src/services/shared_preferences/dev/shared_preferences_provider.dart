@@ -6,3 +6,4 @@ part 'shared_preferences_provider.g.dart';
 Future<SharedPreferences> sharedPreferences (SharedPreferencesRef ref) async {
   return await SharedPreferences.getInstance();
 }
+
