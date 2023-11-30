@@ -1,12 +1,21 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:keshoohin_flutter_app/src/features/user/domain/app_user.dart';
 import 'package:keshoohin_flutter_app/src/features/user/domain/detail/detail.dart';
 import 'package:keshoohin_flutter_app/src/features/user/infrastructure/location/location.dart';
+import 'package:keshoohin_flutter_app/src/features/user/infrastructure/location/location_provider.dart';
 import 'package:keshoohin_flutter_app/src/features/user/infrastructure/user_detail/user_detail_repository.dart';
 
 class UserDetailImpl extends UserDetailRepository {
-  final LocationRepository locationRepository;
+  final Ref ref;
+  late final locationRepository;
 
-  UserDetailImpl(this.locationRepository);
+  UserDetailImpl({required this.ref}) {
+    _initialize();
+  }
+
+  Future<void> _initialize() async {
+    locationRepository = ref.read(locationRepositoryProvider);
+  }
 
   Future<String?> _getCityNameByCode(String code) async {
     await locationRepository.getProvince().then(
@@ -32,6 +41,10 @@ class UserDetailImpl extends UserDetailRepository {
     String? city = await _getCityNameByCode(cityCode);
     String? district = await _getCityNameByCode(districtCode);
     String? ward = await _getCityNameByCode(wardCode);
-    return UserDetail(city: city!, district: district!, ward: ward!, addressDetail: addressDetail);
+    return UserDetail(
+        city: city!,
+        district: district!,
+        ward: ward!,
+        addressDetail: addressDetail);
   }
 }

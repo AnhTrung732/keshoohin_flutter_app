@@ -6,16 +6,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'firebase_oauth_provider.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 FirebaseAuthenticationRepository firebaseAuthenticationRepository(
         FirebaseAuthenticationRepositoryRef ref) =>
-    FirebaseAuthenticationImpl(
-      dio: ref.watch(dioProvider),
-      userRepository: ref.watch(userRepositoryProvider).maybeWhen(
-          data: (value) => value,
-          orElse: () {
-              //throw Null;
-              throw Exception("UserRepository is not available");
-          },
-      )
-    );
+    FirebaseAuthenticationImpl(ref: ref);

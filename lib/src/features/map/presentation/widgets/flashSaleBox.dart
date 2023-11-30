@@ -3,11 +3,11 @@ import 'dart:async';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:keshoohin_flutter_app/src/common_widgets/product%20card/productCard.dart';
-import 'package:keshoohin_flutter_app/src/common_widgets/product%20card/productCardSkeleton.dart';
+import 'package:keshoohin_flutter_app/src/common/utils/app_styles.dart';
+import 'package:keshoohin_flutter_app/src/common/widgets/product%20card/productCard.dart';
+import 'package:keshoohin_flutter_app/src/common/widgets/product%20card/productCardSkeleton.dart';
 import 'package:keshoohin_flutter_app/src/features/collection/domain/collection.dart';
 import 'package:keshoohin_flutter_app/src/features/collection/domain/image_slider.dart';
-import 'package:keshoohin_flutter_app/src/themes/theme.dart';
 
 class FlashSaleHeader extends StatefulWidget {
   late int seconds;

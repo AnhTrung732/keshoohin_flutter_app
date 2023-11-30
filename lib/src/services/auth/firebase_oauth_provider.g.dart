@@ -7,12 +7,12 @@ part of 'firebase_oauth_provider.dart';
 // **************************************************************************
 
 String _$firebaseAuthenticationRepositoryHash() =>
-    r'fb647c97b294475badfe3c2754ab4e15b1fac9ce';
+    r'4c2f5568e9b8b714d0b45dcc7f5c71ca46d4c56e';
 
 /// See also [firebaseAuthenticationRepository].
 @ProviderFor(firebaseAuthenticationRepository)
 final firebaseAuthenticationRepositoryProvider =
-    AutoDisposeProvider<FirebaseAuthenticationRepository>.internal(
+    Provider<FirebaseAuthenticationRepository>.internal(
   firebaseAuthenticationRepository,
   name: r'firebaseAuthenticationRepositoryProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -23,6 +23,6 @@ final firebaseAuthenticationRepositoryProvider =
 );
 
 typedef FirebaseAuthenticationRepositoryRef
-    = AutoDisposeProviderRef<FirebaseAuthenticationRepository>;
+    = ProviderRef<FirebaseAuthenticationRepository>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

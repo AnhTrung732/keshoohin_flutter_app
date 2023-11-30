@@ -14,7 +14,7 @@ class UserService {
   // final UserDetailRepository userDetailRepository;
 
   Future<bool> hasUser() {
-    return ref.read(userRepositoryProvider).value!.hasUser();
+    return ref.read(userRepositoryProvider).hasUser();
   }
 
   Future<UserDetail> setUserLocation(String cityCode, String districtCode,

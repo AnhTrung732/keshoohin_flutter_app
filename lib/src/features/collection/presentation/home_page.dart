@@ -1,22 +1,22 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:keshoohin_flutter_app/src/common_widgets/image%20slider/imageSlider.dart';
-import 'package:keshoohin_flutter_app/src/common_widgets/product_list_view/product%20list%20view.dart';
-import 'package:keshoohin_flutter_app/src/common_widgets/product_list_view/productListViewSkeleton.dart';
-import 'package:keshoohin_flutter_app/src/common_widgets/top%20navigation/topNavigation.dart';
+import 'package:keshoohin_flutter_app/src/common/global/app_state_notifier.dart';
+import 'package:keshoohin_flutter_app/src/common/utils/app_styles.dart';
+import 'package:keshoohin_flutter_app/src/common/widgets/image%20slider/imageSlider.dart';
+import 'package:keshoohin_flutter_app/src/common/widgets/product_list_view/product%20list%20view.dart';
+import 'package:keshoohin_flutter_app/src/common/widgets/top%20navigation/topNavigation.dart';
 import 'package:keshoohin_flutter_app/src/features/collection/domain/collection.dart';
 import 'package:keshoohin_flutter_app/src/features/collection/domain/collection_infor.dart';
 import 'package:keshoohin_flutter_app/src/features/collection/domain/image_slider.dart';
 import 'package:keshoohin_flutter_app/src/features/collection/infrastructure/collection/collection_provider.dart';
 import 'package:keshoohin_flutter_app/src/features/collection/infrastructure/image_slider/image_slider_provider.dart';
-import 'package:keshoohin_flutter_app/src/features/collection/presentation/controller/home_page_controller.dart';
 import 'package:keshoohin_flutter_app/src/features/map/presentation/widgets/flashSaleBox.dart';
 import 'package:keshoohin_flutter_app/src/features/map/presentation/widgets/switchCardsEvent.dart';
 import 'package:keshoohin_flutter_app/src/features/product/domain/product/product.dart';
 import 'package:keshoohin_flutter_app/src/features/product/presentation/controller/product_list_page_controller.dart';
-import 'package:keshoohin_flutter_app/src/services/shared_preferences/shared_preferences_repository_provider.dart';
-import 'package:keshoohin_flutter_app/src/themes/theme.dart';
+import 'package:keshoohin_flutter_app/src/services/storage/storage_impl.dart';
+import 'package:keshoohin_flutter_app/src/services/storage/storage_provider.dart';
 import 'package:skeletons/skeletons.dart';
 import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
 
@@ -160,16 +160,14 @@ class _HomePageState extends ConsumerState<HomePage> {
   }
 
   void _checkAndShowTutorial() async {
-    final sharedPreferencesRepository =
-        ref.watch(sharedPreferencesRepositoryProvider).value!;
+    final app = ref.read(appStateNotifierProvider.notifier);
 
     try {
-      final coachGuideState =
-          await sharedPreferencesRepository.getCoachGuideState();
+      final state = app.appState.coachGuideState;
 
-      if (coachGuideState == false) {
+      if (state == false) {
         showTutorial();
-        sharedPreferencesRepository.setCoachGuideState(true);
+        app.setCoachGuideState(true);
       }
     } catch (error) {
       print("ERROR: $error");
