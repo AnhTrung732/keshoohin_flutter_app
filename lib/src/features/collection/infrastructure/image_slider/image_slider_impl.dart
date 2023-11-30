@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:keshoohin_flutter_app/src/features/collection/domain/image_slider.dart';
 import 'package:keshoohin_flutter_app/src/features/collection/infrastructure/image_slider/image_slider_repository.dart';
-import 'package:keshoohin_flutter_app/src/utils/constants/api_config.dart';
+import 'package:keshoohin_flutter_app/src/common/utils/constants/api_config.dart';
 
 class ImageSliderImpl extends ImageSliderRepository {
   final Dio dio;

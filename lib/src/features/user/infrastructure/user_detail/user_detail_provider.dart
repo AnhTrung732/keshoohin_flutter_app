@@ -8,10 +8,4 @@ part 'user_detail_provider.g.dart';
 @riverpod
 Future<UserDetailRepository> userDetailRepository(
         UserDetailRepositoryRef ref) async =>
-    UserDetailImpl(ref.watch(locationRepositoryProvider).maybeWhen(
-          data: (value) => value,
-          orElse: () {
-            //throw Null;
-            throw Exception("sharedPreferencesRepository is not available");
-          },
-        ));
+    UserDetailImpl(ref: ref);

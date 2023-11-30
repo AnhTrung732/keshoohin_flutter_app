@@ -1,42 +1,40 @@
 import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:keshoohin_flutter_app/src/common/utils/constants/firebase_option.dart';
+import 'package:keshoohin_flutter_app/src/common/widgets/app_popup_message.dart';
 import 'package:keshoohin_flutter_app/src/features/user/domain/app_user.dart';
 import 'package:keshoohin_flutter_app/src/features/user/infrastructure/user/user.dart';
-import 'package:keshoohin_flutter_app/src/utils/constants/api_config.dart';
+import 'package:keshoohin_flutter_app/src/common/utils/constants/api_config.dart';
+import 'package:keshoohin_flutter_app/src/features/user/infrastructure/user/user_provider.dart';
+import 'package:keshoohin_flutter_app/src/features/user/infrastructure/user_detail/user_detail_provider.dart';
 import 'package:keshoohin_flutter_app/src/services/auth/firebase_oauth_repository.dart';
-import 'package:keshoohin_flutter_app/src/utils/firebase_option.dart';
+import 'package:keshoohin_flutter_app/src/services/dio/dio_provider.dart';
+import 'package:keshoohin_flutter_app/src/services/server/server_provider.dart';
+import 'package:keshoohin_flutter_app/src/services/server/server_repository.dart';
 
 class FirebaseAuthenticationImpl extends FirebaseAuthenticationRepository {
-  final Dio dio;
-  final UserRepository userRepository;
-  FirebaseAuthenticationImpl({required this.dio, required this.userRepository});
+  final Ref ref;
+  final FirebaseAuth auth = FirebaseAuth.instance;
 
-  @override
-  Future<FirebaseApp> initializeFirebase() async {
-    FirebaseApp firebaseApp = await Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform,
-    );
-    // TODO: Add auto login logic
-    return firebaseApp;
-  }
+  FirebaseAuthenticationImpl({required this.ref});
 
   @override
   Future<User?> signInWithGoogle() async {
     try {
       print("Signing in...");
-
       final googleSignInAccount = await _getGoogleSignInAccount();
       if (googleSignInAccount != null) {
-        final user = await _signInWithGoogleAccount(googleSignInAccount);
-        return user;
+        return await _signInWithGoogleAccount(googleSignInAccount);
       }
     } catch (error) {
       _handleError(error);
     }
-
     return null;
+    //return null;
   }
 
   Future<GoogleSignInAccount?> _getGoogleSignInAccount() async {
@@ -50,17 +48,13 @@ class FirebaseAuthenticationImpl extends FirebaseAuthenticationRepository {
     final credential =
         _getGoogleAuthProviderCredential(googleSignInAuthentication);
 
-    final auth = FirebaseAuth.instance;
     final userCredential = await auth.signInWithCredential(credential);
-    final user = userCredential.user!;
-    print(user.uid);
-    print(user.email);
-    print(user.displayName);
-    print(user.phoneNumber);
-
-    await _handleLoginRequest(user);
-
-    return user;
+    if (userCredential.user != null) {
+      return userCredential.user!;
+    }
+    return null;
+    //return null;
+    //await serverRepository.handleAuthentication(user, action: 'loginWithUid');
   }
 
   AuthCredential _getGoogleAuthProviderCredential(
@@ -71,50 +65,62 @@ class FirebaseAuthenticationImpl extends FirebaseAuthenticationRepository {
     );
   }
 
-  Future<void> _handleLoginRequest(User user) async {
-    final subbody = {
-      'email': user.email,
-      'uid': user.uid,
-    };
-
-    final response = await _sendLoginRequest(subbody);
-    if (response.statusCode == 200) {
-      final responseData = response.data;
-
-      if (responseData != null) {
-        final account = await _createAccountFromResponse(responseData);
-        await _saveUserAccountToSharedPreferences(account);
-        print("Login successful");
-      } else {
-        print("Response data is null.");
+  @override
+  Future<User?> createUserWithEmailAndPassword(
+      String email, String password, String userName) async {
+    try {
+      final userCredential = await auth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      if (userCredential.user != null) {
+        final user = userCredential.user!;
+        return await _handleUserCreation(user, userName, password);
       }
-    } else {
-      print("Login failed. Status code: ${response.statusCode}");
+    } catch (error) {
+      _handleError(error);
     }
+    return null;
+    //return null;
   }
 
-  Future<Response<Map<String, dynamic>>> _sendLoginRequest(
-      Map<String, dynamic> subbody) async {
-    return await dio.post(
-      ApiConfig.postLogin.toString(),
-      data: {'user': subbody},
-      options: Options(
-        headers: {'Content-Type': 'application/json'},
-      ),
-    );
+  Future<User?> _handleUserCreation(
+      User user, String userName, String password) async {
+    await user.sendEmailVerification().whenComplete(() => toastInfo(
+        "An email has been sent to verify your account. Please open that mail and click on the verification link to complete the registration process"));
+    await user.updateDisplayName(userName);
+    await user.reload();
+    User? latestUser = FirebaseAuth.instance.currentUser!;
+    return latestUser;
+    
   }
 
-  Future<AppUser> _createAccountFromResponse(Map<String, dynamic> responseData) async {
-    return AppUser(
-      idUser: responseData['IDCus'].toString(),
-      email: responseData['Email'].toString(),
-      phone: responseData['PhoneNumber'].toString(),
-      name: responseData['FirstName'].toString(),
-    );
+  @override
+  Future<User?> signInWithUserWithEmailAndPassword(
+      String email, String password) async {
+    try {
+      final userCredential = await auth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      if (userCredential.user != null) {
+        final user = userCredential.user!;
+        return await _handleUserLogin(user, password);
+      }
+    } catch (error) {
+      _handleError(error);
+    }
+    return null;
   }
 
-  Future<void> _saveUserAccountToSharedPreferences(AppUser appUser) async {
-    await userRepository.setCurrentUser(appUser);
+  Future<User?> _handleUserLogin(User user, String password) async {
+    if (!user.emailVerified) {
+      toastInfo("You must verify your email address first");
+    } else {
+      return user;
+      
+    }
+    //return null;
   }
 
   void _handleError(dynamic error) {

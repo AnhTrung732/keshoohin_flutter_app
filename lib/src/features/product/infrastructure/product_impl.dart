@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:keshoohin_flutter_app/src/features/product/domain/product/image.dart';
 import 'package:keshoohin_flutter_app/src/features/product/domain/product/product.dart';
 import 'package:keshoohin_flutter_app/src/features/product/infrastructure/product_repository.dart';
-import 'package:keshoohin_flutter_app/src/utils/constants/api_config.dart';
+import 'package:keshoohin_flutter_app/src/common/utils/constants/api_config.dart';
 
 class ProductImpl extends ProductRepository {
   final Dio dio;

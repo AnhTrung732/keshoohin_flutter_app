@@ -3,10 +3,14 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:keshoohin_flutter_app/src/app.dart';
+import 'package:keshoohin_flutter_app/src/common/widgets/app_circular_progress_indicator.dart';
 import 'package:keshoohin_flutter_app/src/features/collection/presentation/home_page.dart';
+import 'package:keshoohin_flutter_app/src/features/sign_in/presentation/sign_in_page.dart';
+import 'package:keshoohin_flutter_app/src/features/sign_up/presentation/sign_up_page.dart';
 import 'package:keshoohin_flutter_app/src/features/user/presentation/controller/welcome_page_controller.dart';
-import 'package:keshoohin_flutter_app/src/services/routing/route_names.dart';
+import 'package:keshoohin_flutter_app/src/services/routing/app_routes.dart';
+import 'package:keshoohin_flutter_app/src/services/routing/app_routes_name.dart';
+import 'package:keshoohin_flutter_app/src/services/storage/storage_provider.dart';
 
 class WelcomePage extends ConsumerStatefulWidget {
   const WelcomePage({super.key});
@@ -16,32 +20,6 @@ class WelcomePage extends ConsumerStatefulWidget {
 }
 
 class _WelcomePageState extends ConsumerState<WelcomePage> {
-  @override
-  Widget build(BuildContext context) {
-    final AsyncValue<void> state = ref.watch(welcomePageControllerProvider);
-
-    return state.when(
-      loading: () => const CircularProgressIndicator(),
-      data: (_) {
-        //return Container(color: Colors.blue);
-        return ref
-                    .read(welcomePageControllerProvider.notifier)
-                    .checkHasUser() ==
-                false
-            ? const WelcomeScreen()
-            : const KeshoohinApp();
-      },
-      error: (error, stackTrace) {
-        // Handle the case when the future encounters an error
-        return Container(color: Colors.green);
-      },
-    );
-  }
-}
-
-class WelcomeScreen extends StatelessWidget {
-  const WelcomeScreen({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,6 +35,7 @@ class WelcomeScreen extends StatelessWidget {
     );
   }
 }
+
 
 class WelcomeImagesCarousel extends StatelessWidget {
   final List<String> listImages = [
@@ -176,16 +155,17 @@ class WelcomeActions extends StatelessWidget {
   }
 }
 
-class WelcomeActionRow extends StatelessWidget {
+
+class WelcomeActionRow extends ConsumerWidget {
   const WelcomeActionRow({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         GestureDetector(
-          onTap: () => context.pushNamed(RouteNames.signInPage),
+          onTap: () => context.pushNamed(APP_PAGE.login.toName),
           child: Text(
             "login".tr(),
             style: const TextStyle(
@@ -196,10 +176,10 @@ class WelcomeActionRow extends StatelessWidget {
           children: [
             GestureDetector(
               onTap: () {
-                while (context.canPop()) {
-                  context.pop();
-                }
-                context.pushReplacementNamed(RouteNames.homePage);
+                // while (context.canPop()) {
+                //   context.pop();
+                // }
+                context.goNamed(APP_PAGE.home.toName);
               },
               child: Text("skip".tr(),
                   style: const TextStyle(color: Colors.white)),

@@ -6,7 +6,7 @@ import 'package:keshoohin_flutter_app/src/features/collection/domain/collection_
 import 'package:keshoohin_flutter_app/src/features/collection/infrastructure/collection/collection_repository.dart';
 import 'package:keshoohin_flutter_app/src/features/product/domain/product/product.dart';
 import 'package:keshoohin_flutter_app/src/features/product/infrastructure/product_repository.dart';
-import 'package:keshoohin_flutter_app/src/utils/constants/api_config.dart';
+import 'package:keshoohin_flutter_app/src/common/utils/constants/api_config.dart';
 
 class CollectionImpl extends CollectionRepository {
   final Dio dio;
