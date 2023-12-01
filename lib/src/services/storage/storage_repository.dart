@@ -1,5 +1,9 @@
 abstract class StorageRepository {
+  Future<void> setCoachState(bool state);
+  Future<bool?> getCoachState();
 
+  Future<void> setLoginState(bool state);
+  Future<bool?> getLoginState();
 
   Future<List<String>?> getSearchingHistory();
   Future<void> setSearchingHistory(String value);

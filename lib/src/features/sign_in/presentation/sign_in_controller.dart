@@ -12,6 +12,7 @@ import 'package:keshoohin_flutter_app/src/services/routing/app_routes.dart';
 import 'package:keshoohin_flutter_app/src/services/routing/app_routes_name.dart';
 import 'package:keshoohin_flutter_app/src/services/server/server_provider.dart';
 import 'package:keshoohin_flutter_app/src/services/server/server_repository.dart';
+import 'package:keshoohin_flutter_app/src/services/storage/storage_provider.dart';
 
 class SignInController {
   final WidgetRef ref;
@@ -57,6 +58,8 @@ class SignInController {
           phone: response.data['PhoneNumber'].toString(),
           name: response.data['FirstName'].toString(),
         ))
+        .whenComplete(
+            () => ref.read(storageRepositoryProvider).setLoginState(true))
         .whenComplete(() =>
             ref.read(appStateNotifierProvider.notifier).setloginState(true))
         .whenComplete(
@@ -87,6 +90,8 @@ class SignInController {
           phone: response.data['PhoneNumber'].toString(),
           name: response.data['FirstName'].toString(),
         ))
+        .whenComplete(
+            () => ref.read(storageRepositoryProvider).setLoginState(true))
         .whenComplete(() =>
             ref.read(appStateNotifierProvider.notifier).setloginState(true))
         .whenComplete(
