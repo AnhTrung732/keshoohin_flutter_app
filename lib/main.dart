@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:keshoohin_flutter_app/src/common/global/app_state_notifier.dart';
 import 'package:keshoohin_flutter_app/src/common/utils/app_styles.dart';
 import 'package:keshoohin_flutter_app/src/common/global/app_init.dart';
 import 'package:keshoohin_flutter_app/src/services/routing/app_routes.dart';
@@ -25,11 +26,27 @@ Future<void> main() async {
   );
 }
 
-class MyApp extends ConsumerWidget {
+class MyApp extends ConsumerStatefulWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<ConsumerStatefulWidget> createState() => _MyAppState();
+}
+
+class _MyAppState extends ConsumerState<MyApp> {
+  @override
+  void initState() {
+    super.initState();
+    onStartUp();
+  }
+
+  void onStartUp() async {
+    await ref.read(appStateNotifierProvider.notifier).onAppStart();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    ref.watch(appStateNotifierProvider);
     final goRouter = ref.watch(appRouterProvider).router;
     return ScreenUtilInit(
         designSize: const Size(375, 812), //375, 812

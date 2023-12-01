@@ -6,6 +6,30 @@ import 'package:keshoohin_flutter_app/src/services/storage/storage_service.dart'
 
 class StorageImpl implements StorageRepository {
   @override
+  Future<bool> getCoachState() async {
+    return await AppInit.storageService
+            .getBool(AppConstants.STORAGE_COACH_STATE) ??
+        false;
+  }
+
+  @override
+  Future<bool?> getLoginState() async {
+    return await AppInit.storageService
+            .getBool(AppConstants.STORAGE_LOGIN_STATE) ??
+        false;
+  }
+
+  @override
+  Future<void> setCoachState(bool state) async {
+    AppInit.storageService.setBool(AppConstants.STORAGE_COACH_STATE, state);
+  }
+
+  @override
+  Future<void> setLoginState(bool state) async {
+    AppInit.storageService.setBool(AppConstants.STORAGE_LOGIN_STATE, state);
+  }
+
+  @override
   Future<bool> clearSearchingHistory() {
     return AppInit.storageService
         .setBool(AppConstants.STORAGE_SEARCHING_HISTORY, false);
@@ -16,7 +40,6 @@ class StorageImpl implements StorageRepository {
     return AppInit.storageService
         .setBool(AppConstants.STORAGE_VIEW_PRODUCT_HISTORY, false);
   }
-
 
   @override
   Future<String> getEmailUser() async {

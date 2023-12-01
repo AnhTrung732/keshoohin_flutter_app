@@ -1,5 +1,5 @@
 class ApiConfig {
-  static const String baseUrl = 'http://192.168.0.105:8000';
+  static const String baseUrl = 'http://192.168.0.103:8000';
   //Get
   static String getIdShowProduct(int id) => '$baseUrl/api/product/show/$id';
   static String getIdShowCollection(int id) =>
