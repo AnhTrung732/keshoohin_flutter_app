@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:keshoohin_flutter_app/src/common/widgets/app_circular_progress_indicator.dart';
-import 'package:keshoohin_flutter_app/src/features/collection/presentation/home_page.dart';
+import 'package:keshoohin_flutter_app/src/features/collection/presentation/home_page_1.dart';
 import 'package:keshoohin_flutter_app/src/features/sign_in/presentation/sign_in_page.dart';
 import 'package:keshoohin_flutter_app/src/features/sign_up/presentation/sign_up_page.dart';
 import 'package:keshoohin_flutter_app/src/features/user/presentation/controller/welcome_page_controller.dart';
@@ -176,9 +176,6 @@ class WelcomeActionRow extends ConsumerWidget {
           children: [
             GestureDetector(
               onTap: () {
-                // while (context.canPop()) {
-                //   context.pop();
-                // }
                 context.goNamed(APP_PAGE.home.toName);
               },
               child: Text("skip".tr(),

@@ -67,7 +67,7 @@ class SignInController {
         .whenComplete(() => ref
             .read(appRouterProvider)
             .router
-            .pushReplacementNamed(APP_PAGE.home.toName));
+            .goNamed(APP_PAGE.home.toName));
   }
 
   Future<void> handleSignInWithThirdParty() async {
@@ -99,6 +99,6 @@ class SignInController {
         .whenComplete(() => ref
             .read(appRouterProvider)
             .router
-            .pushReplacementNamed(APP_PAGE.home.toName));
+            .goNamed(APP_PAGE.home.toName));
   }
 }

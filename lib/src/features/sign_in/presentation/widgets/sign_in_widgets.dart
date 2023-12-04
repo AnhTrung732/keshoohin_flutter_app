@@ -7,7 +7,7 @@ import 'package:keshoohin_flutter_app/src/features/sign_in/presentation/sign_in_
 Widget buildForgotPasswordBtn() {
   return Container(
       alignment: Alignment.centerRight,
-      child: textUnderline(text: "Forgot password"));
+      child: const TextUnderline(text: "Forgot password"));
 }
 
 Widget buildRememberMeCheckbox() {
@@ -28,7 +28,7 @@ Widget buildRememberMeCheckbox() {
             },
           ),
         ),
-        text12NormalBlack(text: 'Remember me'),
+        const Text12Normal(text: 'Remember me'),
       ],
     ),
   );

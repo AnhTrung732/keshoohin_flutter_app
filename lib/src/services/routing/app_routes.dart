@@ -34,6 +34,7 @@ class AppRouter {
       appStatefulShellRoute(),
     ],
     redirect: (BuildContext context, GoRouterState state) async {
+      print(state.fullPath);
       final isGoingtoWelcome = state.fullPath == APP_PAGE.welcome.toPath;
       final isLogedIn =
           ref.read(appStateNotifierProvider.notifier).appState.loginState;

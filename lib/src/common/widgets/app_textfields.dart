@@ -8,7 +8,7 @@ Widget appTextFieldItem({
   TextEditingController? controller,
   Icon icon = const Icon(
     Icons.email,
-    color: AppColors.primarySecondeElement,
+    color: AppColors.primarySecondElement,
   ),
   String text = "",
   String hintText = "Type your information correctly !",
@@ -18,7 +18,7 @@ Widget appTextFieldItem({
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: <Widget>[
-      text14Normal(text: text),
+      Text14Normal(text: text),
       const SizedBox(height: 5.0),
       Container(
         alignment: Alignment.centerLeft,
@@ -30,16 +30,47 @@ Widget appTextFieldItem({
           onChanged: (value) => func!(value),
           keyboardType: TextInputType.emailAddress,
           decoration: InputDecoration(
-            //border: InputBorder.none,
             contentPadding: EdgeInsets.only(top: 14.h),
             prefixIcon: icon,
             hintText: hintText,
-            //labelStyle: lightTheme.inputDecorationTheme.labelStyle,
-            // hintStyle: kHintTextStyle,
           ),
           obscureText: obscureText,
         ),
       ),
     ],
+  );
+}
+
+Widget appTextFieldOnly({
+  TextEditingController? controller,
+  String hintText = "Type your information correctly !",
+  bool obscureText = false,
+  double width = 280,
+  double height = 50,
+  void Function(String value)? func,
+}) {
+  return SizedBox(
+    width: width.w,
+    height: height.h,
+    child: TextField(
+      controller: controller,
+      onChanged: (value) => func!(value),
+      keyboardType: TextInputType.multiline,
+      decoration: InputDecoration(
+        border: const OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.transparent)),
+        enabledBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.transparent)),
+        focusedBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.transparent)),
+        disabledBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.transparent)),
+        contentPadding: EdgeInsets.only(top: 5.h, left: 10.w),
+        hintText: hintText,
+      ),
+      obscureText: obscureText,
+      maxLines: 1,
+      autocorrect: false,
+    ),
   );
 }

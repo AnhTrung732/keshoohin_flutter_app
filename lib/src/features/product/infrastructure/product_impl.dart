@@ -1,8 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:keshoohin_flutter_app/src/features/product/domain/product/image.dart';
+import 'package:keshoohin_flutter_app/src/common/utils/api_config.dart';
 import 'package:keshoohin_flutter_app/src/features/product/domain/product/product.dart';
 import 'package:keshoohin_flutter_app/src/features/product/infrastructure/product_repository.dart';
-import 'package:keshoohin_flutter_app/src/common/utils/constants/api_config.dart';
 
 class ProductImpl extends ProductRepository {
   final Dio dio;
@@ -17,8 +16,26 @@ class ProductImpl extends ProductRepository {
     if (response.statusCode == 200) {
       return Product.fromJson(response.data);
     } else {
-      throw Exception('Failed to load');
+      throw Exception('Failed to load product by id');
     }
+  }
+
+  @override
+  Future<ProductList?> getAllProduct() async {
+    final Response response =
+        await dio.get(ApiConfig.getAllProduct().toString());
+
+    if (response.statusCode == 200) {
+      try {
+        final productList = ProductList.fromJson(response.data);
+        //print("Conversion successful: $productList");
+        return productList;
+      } catch (e) {
+        print("Error converting response: $e");
+        throw Exception('Failed to convert response to ProductList');
+      }
+    }
+    return null;
   }
 
   // Future<ImagesProduct> _getImages(int id) async {
@@ -33,5 +50,4 @@ class ProductImpl extends ProductRepository {
   //     throw Exception('Failed to load');
   //   }
   // }
-  
 }

@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 Product _$ProductFromJson(Map<String, dynamic> json) {
-  return _ProductInfor.fromJson(json);
+  return _Product.fromJson(json);
 }
 
 /// @nodoc
@@ -52,8 +52,6 @@ mixin _$Product {
   int get idType => throw _privateConstructorUsedError;
   @JsonKey(name: 'ListPrice')
   int get listPrice => throw _privateConstructorUsedError;
-  @JsonKey(name: 'IDCollection')
-  int? get idCollection => throw _privateConstructorUsedError;
   @JsonKey(name: 'RetailPrice')
   int? get retailPrice => throw _privateConstructorUsedError;
   @JsonKey(name: 'Brand')
@@ -92,7 +90,6 @@ abstract class $ProductCopyWith<$Res> {
       @JsonKey(name: 'IDTag') int idTag,
       @JsonKey(name: 'IDType') int idType,
       @JsonKey(name: 'ListPrice') int listPrice,
-      @JsonKey(name: 'IDCollection') int? idCollection,
       @JsonKey(name: 'RetailPrice') int? retailPrice,
       @JsonKey(name: 'Brand') Brand? brand,
       @JsonKey(name: 'Images') List<ImageProduct>? images,
@@ -131,7 +128,6 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
     Object? idTag = null,
     Object? idType = null,
     Object? listPrice = null,
-    Object? idCollection = freezed,
     Object? retailPrice = freezed,
     Object? brand = freezed,
     Object? images = freezed,
@@ -203,10 +199,6 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
           ? _value.listPrice
           : listPrice // ignore: cast_nullable_to_non_nullable
               as int,
-      idCollection: freezed == idCollection
-          ? _value.idCollection
-          : idCollection // ignore: cast_nullable_to_non_nullable
-              as int?,
       retailPrice: freezed == retailPrice
           ? _value.retailPrice
           : retailPrice // ignore: cast_nullable_to_non_nullable
@@ -244,11 +236,10 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
 }
 
 /// @nodoc
-abstract class _$$ProductInforImplCopyWith<$Res>
-    implements $ProductCopyWith<$Res> {
-  factory _$$ProductInforImplCopyWith(
-          _$ProductInforImpl value, $Res Function(_$ProductInforImpl) then) =
-      __$$ProductInforImplCopyWithImpl<$Res>;
+abstract class _$$ProductImplCopyWith<$Res> implements $ProductCopyWith<$Res> {
+  factory _$$ProductImplCopyWith(
+          _$ProductImpl value, $Res Function(_$ProductImpl) then) =
+      __$$ProductImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -268,7 +259,6 @@ abstract class _$$ProductInforImplCopyWith<$Res>
       @JsonKey(name: 'IDTag') int idTag,
       @JsonKey(name: 'IDType') int idType,
       @JsonKey(name: 'ListPrice') int listPrice,
-      @JsonKey(name: 'IDCollection') int? idCollection,
       @JsonKey(name: 'RetailPrice') int? retailPrice,
       @JsonKey(name: 'Brand') Brand? brand,
       @JsonKey(name: 'Images') List<ImageProduct>? images,
@@ -280,11 +270,11 @@ abstract class _$$ProductInforImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$ProductInforImplCopyWithImpl<$Res>
-    extends _$ProductCopyWithImpl<$Res, _$ProductInforImpl>
-    implements _$$ProductInforImplCopyWith<$Res> {
-  __$$ProductInforImplCopyWithImpl(
-      _$ProductInforImpl _value, $Res Function(_$ProductInforImpl) _then)
+class __$$ProductImplCopyWithImpl<$Res>
+    extends _$ProductCopyWithImpl<$Res, _$ProductImpl>
+    implements _$$ProductImplCopyWith<$Res> {
+  __$$ProductImplCopyWithImpl(
+      _$ProductImpl _value, $Res Function(_$ProductImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -306,14 +296,13 @@ class __$$ProductInforImplCopyWithImpl<$Res>
     Object? idTag = null,
     Object? idType = null,
     Object? listPrice = null,
-    Object? idCollection = freezed,
     Object? retailPrice = freezed,
     Object? brand = freezed,
     Object? images = freezed,
     Object? rating = freezed,
     Object? reviews = freezed,
   }) {
-    return _then(_$ProductInforImpl(
+    return _then(_$ProductImpl(
       idProduct: null == idProduct
           ? _value.idProduct
           : idProduct // ignore: cast_nullable_to_non_nullable
@@ -378,10 +367,6 @@ class __$$ProductInforImplCopyWithImpl<$Res>
           ? _value.listPrice
           : listPrice // ignore: cast_nullable_to_non_nullable
               as int,
-      idCollection: freezed == idCollection
-          ? _value.idCollection
-          : idCollection // ignore: cast_nullable_to_non_nullable
-              as int?,
       retailPrice: freezed == retailPrice
           ? _value.retailPrice
           : retailPrice // ignore: cast_nullable_to_non_nullable
@@ -408,8 +393,8 @@ class __$$ProductInforImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ProductInforImpl implements _ProductInfor {
-  _$ProductInforImpl(
+class _$ProductImpl implements _Product {
+  _$ProductImpl(
       {@JsonKey(name: 'IDProduct') required this.idProduct,
       @JsonKey(name: 'NameProduct') required this.nameProduct,
       @JsonKey(name: 'IDBrand') required this.idBrand,
@@ -426,7 +411,6 @@ class _$ProductInforImpl implements _ProductInfor {
       @JsonKey(name: 'IDTag') required this.idTag,
       @JsonKey(name: 'IDType') required this.idType,
       @JsonKey(name: 'ListPrice') required this.listPrice,
-      @JsonKey(name: 'IDCollection') this.idCollection,
       @JsonKey(name: 'RetailPrice') this.retailPrice,
       @JsonKey(name: 'Brand') this.brand,
       @JsonKey(name: 'Images') final List<ImageProduct>? images,
@@ -435,8 +419,8 @@ class _$ProductInforImpl implements _ProductInfor {
       : _images = images,
         _reviews = reviews;
 
-  factory _$ProductInforImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ProductInforImplFromJson(json);
+  factory _$ProductImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ProductImplFromJson(json);
 
   @override
   @JsonKey(name: 'IDProduct')
@@ -487,9 +471,6 @@ class _$ProductInforImpl implements _ProductInfor {
   @JsonKey(name: 'ListPrice')
   final int listPrice;
   @override
-  @JsonKey(name: 'IDCollection')
-  final int? idCollection;
-  @override
   @JsonKey(name: 'RetailPrice')
   final int? retailPrice;
   @override
@@ -522,14 +503,14 @@ class _$ProductInforImpl implements _ProductInfor {
 
   @override
   String toString() {
-    return 'Product(idProduct: $idProduct, nameProduct: $nameProduct, idBrand: $idBrand, description: $description, createdOn: $createdOn, isDeleted: $isDeleted, stock: $stock, totalPurchaseQuantity: $totalPurchaseQuantity, mass: $mass, unitsOfMass: $unitsOfMass, units: $units, applyTaxes: $applyTaxes, statusSale: $statusSale, idTag: $idTag, idType: $idType, listPrice: $listPrice, idCollection: $idCollection, retailPrice: $retailPrice, brand: $brand, images: $images, rating: $rating, reviews: $reviews)';
+    return 'Product(idProduct: $idProduct, nameProduct: $nameProduct, idBrand: $idBrand, description: $description, createdOn: $createdOn, isDeleted: $isDeleted, stock: $stock, totalPurchaseQuantity: $totalPurchaseQuantity, mass: $mass, unitsOfMass: $unitsOfMass, units: $units, applyTaxes: $applyTaxes, statusSale: $statusSale, idTag: $idTag, idType: $idType, listPrice: $listPrice, retailPrice: $retailPrice, brand: $brand, images: $images, rating: $rating, reviews: $reviews)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ProductInforImpl &&
+            other is _$ProductImpl &&
             (identical(other.idProduct, idProduct) ||
                 other.idProduct == idProduct) &&
             (identical(other.nameProduct, nameProduct) ||
@@ -556,8 +537,6 @@ class _$ProductInforImpl implements _ProductInfor {
             (identical(other.idType, idType) || other.idType == idType) &&
             (identical(other.listPrice, listPrice) ||
                 other.listPrice == listPrice) &&
-            (identical(other.idCollection, idCollection) ||
-                other.idCollection == idCollection) &&
             (identical(other.retailPrice, retailPrice) ||
                 other.retailPrice == retailPrice) &&
             (identical(other.brand, brand) || other.brand == brand) &&
@@ -586,7 +565,6 @@ class _$ProductInforImpl implements _ProductInfor {
         idTag,
         idType,
         listPrice,
-        idCollection,
         retailPrice,
         brand,
         const DeepCollectionEquality().hash(_images),
@@ -597,19 +575,19 @@ class _$ProductInforImpl implements _ProductInfor {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ProductInforImplCopyWith<_$ProductInforImpl> get copyWith =>
-      __$$ProductInforImplCopyWithImpl<_$ProductInforImpl>(this, _$identity);
+  _$$ProductImplCopyWith<_$ProductImpl> get copyWith =>
+      __$$ProductImplCopyWithImpl<_$ProductImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ProductInforImplToJson(
+    return _$$ProductImplToJson(
       this,
     );
   }
 }
 
-abstract class _ProductInfor implements Product {
-  factory _ProductInfor(
+abstract class _Product implements Product {
+  factory _Product(
       {@JsonKey(name: 'IDProduct') required final int idProduct,
       @JsonKey(name: 'NameProduct') required final String nameProduct,
       @JsonKey(name: 'IDBrand') required final int idBrand,
@@ -626,16 +604,13 @@ abstract class _ProductInfor implements Product {
       @JsonKey(name: 'IDTag') required final int idTag,
       @JsonKey(name: 'IDType') required final int idType,
       @JsonKey(name: 'ListPrice') required final int listPrice,
-      @JsonKey(name: 'IDCollection') final int? idCollection,
       @JsonKey(name: 'RetailPrice') final int? retailPrice,
       @JsonKey(name: 'Brand') final Brand? brand,
       @JsonKey(name: 'Images') final List<ImageProduct>? images,
       @JsonKey(name: 'Rating') final dynamic rating,
-      @JsonKey(name: 'Reviews')
-      final List<Review>? reviews}) = _$ProductInforImpl;
+      @JsonKey(name: 'Reviews') final List<Review>? reviews}) = _$ProductImpl;
 
-  factory _ProductInfor.fromJson(Map<String, dynamic> json) =
-      _$ProductInforImpl.fromJson;
+  factory _Product.fromJson(Map<String, dynamic> json) = _$ProductImpl.fromJson;
 
   @override
   @JsonKey(name: 'IDProduct')
@@ -686,9 +661,6 @@ abstract class _ProductInfor implements Product {
   @JsonKey(name: 'ListPrice')
   int get listPrice;
   @override
-  @JsonKey(name: 'IDCollection')
-  int? get idCollection;
-  @override
   @JsonKey(name: 'RetailPrice')
   int? get retailPrice;
   @override
@@ -705,6 +677,150 @@ abstract class _ProductInfor implements Product {
   List<Review>? get reviews;
   @override
   @JsonKey(ignore: true)
-  _$$ProductInforImplCopyWith<_$ProductInforImpl> get copyWith =>
+  _$$ProductImplCopyWith<_$ProductImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+ProductList _$ProductListFromJson(Map<String, dynamic> json) {
+  return _ProductList.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ProductList {
+  List<Product>? get products => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ProductListCopyWith<ProductList> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ProductListCopyWith<$Res> {
+  factory $ProductListCopyWith(
+          ProductList value, $Res Function(ProductList) then) =
+      _$ProductListCopyWithImpl<$Res, ProductList>;
+  @useResult
+  $Res call({List<Product>? products});
+}
+
+/// @nodoc
+class _$ProductListCopyWithImpl<$Res, $Val extends ProductList>
+    implements $ProductListCopyWith<$Res> {
+  _$ProductListCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? products = freezed,
+  }) {
+    return _then(_value.copyWith(
+      products: freezed == products
+          ? _value.products
+          : products // ignore: cast_nullable_to_non_nullable
+              as List<Product>?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ProductListImplCopyWith<$Res>
+    implements $ProductListCopyWith<$Res> {
+  factory _$$ProductListImplCopyWith(
+          _$ProductListImpl value, $Res Function(_$ProductListImpl) then) =
+      __$$ProductListImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({List<Product>? products});
+}
+
+/// @nodoc
+class __$$ProductListImplCopyWithImpl<$Res>
+    extends _$ProductListCopyWithImpl<$Res, _$ProductListImpl>
+    implements _$$ProductListImplCopyWith<$Res> {
+  __$$ProductListImplCopyWithImpl(
+      _$ProductListImpl _value, $Res Function(_$ProductListImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? products = freezed,
+  }) {
+    return _then(_$ProductListImpl(
+      products: freezed == products
+          ? _value._products
+          : products // ignore: cast_nullable_to_non_nullable
+              as List<Product>?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ProductListImpl implements _ProductList {
+  _$ProductListImpl({final List<Product>? products}) : _products = products;
+
+  factory _$ProductListImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ProductListImplFromJson(json);
+
+  final List<Product>? _products;
+  @override
+  List<Product>? get products {
+    final value = _products;
+    if (value == null) return null;
+    if (_products is EqualUnmodifiableListView) return _products;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  String toString() {
+    return 'ProductList(products: $products)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ProductListImpl &&
+            const DeepCollectionEquality().equals(other._products, _products));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_products));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ProductListImplCopyWith<_$ProductListImpl> get copyWith =>
+      __$$ProductListImplCopyWithImpl<_$ProductListImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ProductListImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ProductList implements ProductList {
+  factory _ProductList({final List<Product>? products}) = _$ProductListImpl;
+
+  factory _ProductList.fromJson(Map<String, dynamic> json) =
+      _$ProductListImpl.fromJson;
+
+  @override
+  List<Product>? get products;
+  @override
+  @JsonKey(ignore: true)
+  _$$ProductListImplCopyWith<_$ProductListImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

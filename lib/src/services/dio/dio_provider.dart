@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:keshoohin_flutter_app/src/common/utils/api_config.dart';
 // 1. import the riverpod_annotation package
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -6,8 +7,15 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'dio_provider.g.dart';
 
 // 3. use the @riverpod annotation
-@riverpod
+@Riverpod(keepAlive: true)
 // 4. update the declaration
 Dio dio(DioRef ref) {
-  return Dio();
+  BaseOptions options = BaseOptions(
+      baseUrl: ApiConfig.baseUrl,
+      connectTimeout: const Duration(seconds: 5),
+      receiveTimeout: const Duration(seconds: 5),
+      headers: {},
+      contentType: "application/json: charset-utf-8",
+      responseType: ResponseType.json);
+  return Dio(options);
 }

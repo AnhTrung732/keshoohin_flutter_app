@@ -3,13 +3,11 @@
 //thank Maxim for your help to solve
 
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:keshoohin_flutter_app/src/common/utils/app_colors.dart';
 
 class OwnThemeFields {
   final double defaultVerticalPaddingOfScreen = 10;
-  final double defaultMarginBetween = 10;
-
+  final double defaultMarginBetween = 20;
   final double defaultProductCardMargin = 3;
 
   final Color defaultScaffoldColor = const Color.fromARGB(150, 230, 230, 243);

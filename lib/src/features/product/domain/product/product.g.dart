@@ -6,8 +6,8 @@ part of 'product.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ProductInforImpl _$$ProductInforImplFromJson(Map<String, dynamic> json) =>
-    _$ProductInforImpl(
+_$ProductImpl _$$ProductImplFromJson(Map<String, dynamic> json) =>
+    _$ProductImpl(
       idProduct: json['IDProduct'] as int,
       nameProduct: json['NameProduct'] as String,
       idBrand: json['IDBrand'] as int,
@@ -24,7 +24,6 @@ _$ProductInforImpl _$$ProductInforImplFromJson(Map<String, dynamic> json) =>
       idTag: json['IDTag'] as int,
       idType: json['IDType'] as int,
       listPrice: json['ListPrice'] as int,
-      idCollection: json['IDCollection'] as int?,
       retailPrice: json['RetailPrice'] as int?,
       brand: json['Brand'] == null
           ? null
@@ -38,7 +37,7 @@ _$ProductInforImpl _$$ProductInforImplFromJson(Map<String, dynamic> json) =>
           .toList(),
     );
 
-Map<String, dynamic> _$$ProductInforImplToJson(_$ProductInforImpl instance) =>
+Map<String, dynamic> _$$ProductImplToJson(_$ProductImpl instance) =>
     <String, dynamic>{
       'IDProduct': instance.idProduct,
       'NameProduct': instance.nameProduct,
@@ -56,10 +55,21 @@ Map<String, dynamic> _$$ProductInforImplToJson(_$ProductInforImpl instance) =>
       'IDTag': instance.idTag,
       'IDType': instance.idType,
       'ListPrice': instance.listPrice,
-      'IDCollection': instance.idCollection,
       'RetailPrice': instance.retailPrice,
       'Brand': instance.brand,
       'Images': instance.images,
       'Rating': instance.rating,
       'Reviews': instance.reviews,
+    };
+
+_$ProductListImpl _$$ProductListImplFromJson(Map<String, dynamic> json) =>
+    _$ProductListImpl(
+      products: (json['products'] as List<dynamic>?)
+          ?.map((e) => Product.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$$ProductListImplToJson(_$ProductListImpl instance) =>
+    <String, dynamic>{
+      'products': instance.products,
     };

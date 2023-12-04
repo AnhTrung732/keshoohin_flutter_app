@@ -25,7 +25,7 @@ Map<String, dynamic> _$$CollectionImplToJson(_$CollectionImpl instance) =>
 // RiverpodGenerator
 // **************************************************************************
 
-String _$asyncCollectionHash() => r'cf33f3434689c0847dc1e0a7e5c39053062bb362';
+String _$asyncCollectionHash() => r'67e6c80ade608d28ffd4b5e30b89fbe35c05bff1';
 
 /// See also [AsyncCollection].
 @ProviderFor(AsyncCollection)

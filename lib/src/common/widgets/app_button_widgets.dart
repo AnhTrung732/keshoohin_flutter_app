@@ -17,9 +17,9 @@ Widget appButton(
       height: height.h,
       decoration: appBoxShadow(
           color: isColor ? AppColors.primaryElement : Colors.white,
-          border: Border.all(color: AppColors.primaryFourthElementText)),
+          boxBorder: Border.all(color: AppColors.primaryFourthElementText)),
       child: Center(
-          child: text16Normal(
+          child: Text16Normal(
               text: buttonName,
               color: isColor
                   ? AppColors.primaryBackground

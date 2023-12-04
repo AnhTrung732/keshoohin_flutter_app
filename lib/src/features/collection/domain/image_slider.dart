@@ -22,14 +22,14 @@ class ImageSlider with _$ImageSlider {
       _$ImageSliderFromJson(json);
 }
 
-@riverpod
-class AsyncImageSlider extends _$AsyncImageSlider {
-  late ImageSliderRepository imageSlider;
+// @riverpod
+// class AsyncImageSlider extends _$AsyncImageSlider {
+//   late ImageSliderRepository imageSlider;
 
-  @override
-  FutureOr<List<ImageSlider>> build() async {
-    // Load initial todo list from the remote repository
-    imageSlider = ref.watch(imageSliderRepositoryProvider);
-    return imageSlider.getImageSlider();
-  }
-}
+//   @override
+//   FutureOr<List<ImageSlider>> build() async {
+//     // Load initial todo list from the remote repository
+//     imageSlider = ref.watch(imageSliderRepositoryProvider);
+//     return imageSlider.getImageSlider();
+//   }
+// }

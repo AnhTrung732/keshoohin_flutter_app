@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:keshoohin_flutter_app/src/common/utils/constants/api_config.dart';
+import 'package:keshoohin_flutter_app/src/common/utils/api_config.dart';
 import 'package:keshoohin_flutter_app/src/services/dio/dio_provider.dart';
 import 'package:keshoohin_flutter_app/src/services/server/server_repository.dart';
 

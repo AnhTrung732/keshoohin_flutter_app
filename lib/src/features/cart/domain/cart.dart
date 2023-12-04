@@ -32,7 +32,7 @@ extension MutableCart on Cart {
           .contains(item.product.idProduct)) {
         var retailPrice = item.product.retailPrice ??
             item.product.listPrice;
-        newTotal += item.quantity * retailPrice;
+        newTotal += item.quantity * retailPrice!;
       }
     }
     // Return a new Cart instance with the updated total value

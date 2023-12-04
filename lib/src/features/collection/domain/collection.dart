@@ -25,8 +25,12 @@ class AsyncCollection extends _$AsyncCollection {
 
   @override
   FutureOr<Collection> build() async {
-    // Load initial todo list from the remote repository
+    return fetchCollection(65);
+  }
+
+  Future<Collection> fetchCollection(int index) async {
+    // Load initial from the remote repository
     collection = ref.watch(collectionRepositoryProvider);
-    return collection.getCollection(65);
+    return collection.getCollection(index);
   }
 }

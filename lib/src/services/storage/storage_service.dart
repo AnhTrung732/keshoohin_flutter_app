@@ -17,7 +17,7 @@ class StorageService {
     return await _pref.setString(key, value);
   }
 
-  Future<String?> getString(String key) async {
+  String? getString(String key)  {
     return _pref.getString(key);
   }
 
@@ -25,7 +25,7 @@ class StorageService {
     return _pref.setStringList(key, value);
   }
 
-  Future<List<String>?> getStringList(String key) async {
+  List<String>? getStringList(String key)  {
     return _pref.getStringList(key);
   }
 
@@ -33,7 +33,7 @@ class StorageService {
     return await _pref.setBool(key, value);
   }
 
-  Future<bool?> getBool(String key) async {
+  bool? getBool(String key)  {
     return _pref.getBool(key);
   }
 }
