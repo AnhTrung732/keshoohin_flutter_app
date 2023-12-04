@@ -5,4 +5,5 @@ abstract class ProductRepository {
   //Future<ProductInfor> _getProductInfor(int id);
   //Future<List<ImageProduct>> _getImages(int id);
   Future<Product> getProduct(int id);
+  Future<ProductList?> getAllProduct();
 }

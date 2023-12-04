@@ -1,20 +1,8 @@
-import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:keshoohin_flutter_app/src/common/utils/constants/firebase_option.dart';
 import 'package:keshoohin_flutter_app/src/common/widgets/app_popup_message.dart';
-import 'package:keshoohin_flutter_app/src/features/user/domain/app_user.dart';
-import 'package:keshoohin_flutter_app/src/features/user/infrastructure/user/user.dart';
-import 'package:keshoohin_flutter_app/src/common/utils/constants/api_config.dart';
-import 'package:keshoohin_flutter_app/src/features/user/infrastructure/user/user_provider.dart';
-import 'package:keshoohin_flutter_app/src/features/user/infrastructure/user_detail/user_detail_provider.dart';
 import 'package:keshoohin_flutter_app/src/services/auth/firebase_oauth_repository.dart';
-import 'package:keshoohin_flutter_app/src/services/dio/dio_provider.dart';
-import 'package:keshoohin_flutter_app/src/services/server/server_provider.dart';
-import 'package:keshoohin_flutter_app/src/services/server/server_repository.dart';
 
 class FirebaseAuthenticationImpl extends FirebaseAuthenticationRepository {
   final Ref ref;
@@ -118,7 +106,6 @@ class FirebaseAuthenticationImpl extends FirebaseAuthenticationRepository {
       toastInfo("You must verify your email address first");
     } else {
       return user;
-      
     }
     //return null;
   }

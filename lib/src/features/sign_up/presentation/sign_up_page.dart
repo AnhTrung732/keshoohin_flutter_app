@@ -49,14 +49,14 @@ class _SignInPageState extends ConsumerState<SignUpPage> {
                         children: <Widget>[
                           //buildThirdPartyLogin(),
                           SizedBox(height: 20.h),
-                          text14Normal(
+                          const Text14Normal(
                               text: "Enter your detail below & free sign up"),
                           SizedBox(height: 30.h),
                           appTextFieldItem(
                             controller: _controller.userNameController,
                               icon: const Icon(
                                 Icons.email,
-                                color: AppColors.primarySecondeElement,
+                                color: AppColors.primarySecondElement,
                               ),
                               text: "User",
                               hintText: "Enter your user name",
@@ -68,7 +68,7 @@ class _SignInPageState extends ConsumerState<SignUpPage> {
                             controller: _controller.emailController,
                               icon: const Icon(
                                 Icons.email,
-                                color: AppColors.primarySecondeElement,
+                                color: AppColors.primarySecondElement,
                               ),
                               text: "Email",
                               hintText: "Enter your email address",
@@ -80,7 +80,7 @@ class _SignInPageState extends ConsumerState<SignUpPage> {
                             controller: _controller.passwordController,
                               icon: const Icon(
                                 Icons.lock,
-                                color: AppColors.primarySecondeElement,
+                                color: AppColors.primarySecondElement,
                               ),
                               text: "Password",
                               hintText: "Enter your password",
@@ -93,7 +93,7 @@ class _SignInPageState extends ConsumerState<SignUpPage> {
                             controller: _controller.rePasswordController,
                               icon: const Icon(
                                 Icons.lock,
-                                color: AppColors.primarySecondeElement,
+                                color: AppColors.primarySecondElement,
                               ),
                               text: "Confirm Password",
                               hintText: "Enter your confirm password",
@@ -102,7 +102,7 @@ class _SignInPageState extends ConsumerState<SignUpPage> {
                                   .read(registerNotifierProvider.notifier)
                                   .onRePasswordChange(value)),
                           SizedBox(height: 30.h),
-                          text14Normal(
+                          const Text14Normal(
                               text:
                                   "By creating an account you are agreeing with our terms and conditions"),
                           SizedBox(height: 120.h),

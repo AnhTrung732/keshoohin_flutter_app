@@ -36,14 +36,24 @@ class Product with _$Product {
     @JsonKey(name: 'IDTag') required int idTag,
     @JsonKey(name: 'IDType') required int idType,
     @JsonKey(name: 'ListPrice') required int listPrice,
-    @JsonKey(name: 'IDCollection') int? idCollection,
     @JsonKey(name: 'RetailPrice') int? retailPrice,
     @JsonKey(name: 'Brand') Brand? brand,
     @JsonKey(name: 'Images') List<ImageProduct>? images,
     @JsonKey(name: 'Rating') dynamic rating,
     @JsonKey(name: 'Reviews') List<Review>? reviews,
-  }) = _ProductInfor;
+  }) = _Product;
 
   factory Product.fromJson(Map<String, dynamic> json) =>
       _$ProductFromJson(json);
+}
+
+
+@freezed
+class ProductList with _$ProductList {
+  factory ProductList({
+    List<Product>? products,
+  }) = _ProductList;
+
+  factory ProductList.fromJson(Map<String, dynamic> json) =>
+      _$ProductListFromJson(json);
 }

@@ -6,16 +6,14 @@ import 'package:keshoohin_flutter_app/src/services/storage/storage_service.dart'
 
 class StorageImpl implements StorageRepository {
   @override
-  Future<bool> getCoachState() async {
-    return await AppInit.storageService
-            .getBool(AppConstants.STORAGE_COACH_STATE) ??
+  bool getCoachState() {
+    return AppInit.storageService.getBool(AppConstants.STORAGE_COACH_STATE) ??
         false;
   }
 
   @override
-  Future<bool?> getLoginState() async {
-    return await AppInit.storageService
-            .getBool(AppConstants.STORAGE_LOGIN_STATE) ??
+  bool getLoginState() {
+    return AppInit.storageService.getBool(AppConstants.STORAGE_LOGIN_STATE) ??
         false;
   }
 
@@ -42,42 +40,38 @@ class StorageImpl implements StorageRepository {
   }
 
   @override
-  Future<String> getEmailUser() async {
-    String? res =
-        await AppInit.storageService.getString(AppConstants.STORAGE_USER_EMAIL);
-    return res ?? "Chuoi trong";
+  String? getEmailUser() {
+    return
+        AppInit.storageService.getString(AppConstants.STORAGE_USER_EMAIL);
   }
 
   @override
-  Future<String> getIdUser() async {
-    String? res =
-        await AppInit.storageService.getString(AppConstants.STORAGE_USER_ID);
-    return res ?? "Chuoi trong";
+  String? getIdUser() {
+    return
+        AppInit.storageService.getString(AppConstants.STORAGE_USER_ID);
   }
 
   @override
-  Future<String> getNameUser() async {
-    String? res =
-        await AppInit.storageService.getString(AppConstants.STORAGE_USER_NAME);
-    return res ?? "Chuoi trong";
+  String? getNameUser() {
+    return
+        AppInit.storageService.getString(AppConstants.STORAGE_USER_NAME);
   }
 
   @override
-  Future<String> getPhoneUser() async {
-    String? res =
-        await AppInit.storageService.getString(AppConstants.STORAGE_PHONE_USER);
-    return res ?? "Chuoi trong";
+  String? getPhoneUser() {
+    return 
+        AppInit.storageService.getString(AppConstants.STORAGE_PHONE_USER);
   }
 
   @override
-  Future<List<String>?> getSearchingHistory() async {
-    return await AppInit.storageService
+  List<String>? getSearchingHistory() {
+    return AppInit.storageService
         .getStringList(AppConstants.STORAGE_SEARCHING_HISTORY);
   }
 
   @override
-  Future<List<int>?> getViewProductHistory() async {
-    List<String>? res = await AppInit.storageService
+  List<int>? getViewProductHistory() {
+    List<String>? res = AppInit.storageService
         .getStringList(AppConstants.STORAGE_VIEW_PRODUCT_HISTORY);
     return res?.reversed.map((e) => int.parse(e)).toList();
   }
@@ -106,7 +100,7 @@ class StorageImpl implements StorageRepository {
   Future<bool> setSearchingHistory(String value) async {
     //get current list
     List<String> searchingHistory = <String>[];
-    List<String>? currList = await AppInit.storageService
+    List<String>? currList = AppInit.storageService
         .getStringList(AppConstants.STORAGE_SEARCHING_HISTORY);
     print("loading local data storage");
     print(currList);
@@ -128,7 +122,7 @@ class StorageImpl implements StorageRepository {
   @override
   Future<bool> setViewProductHistory(int productId) async {
     List<String> viewHistory = <String>[];
-    List<String>? currList = await AppInit.storageService
+    List<String>? currList = AppInit.storageService
         .getStringList(AppConstants.STORAGE_VIEW_PRODUCT_HISTORY);
     print("loading local data storage");
     print(currList);

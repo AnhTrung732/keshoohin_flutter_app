@@ -27,26 +27,3 @@ Map<String, dynamic> _$$ImageSliderImplToJson(_$ImageSliderImpl instance) =>
       'IsDeleted': instance.isDeleted,
       'CreatedOn': instance.createdOn,
     };
-
-// **************************************************************************
-// RiverpodGenerator
-// **************************************************************************
-
-String _$asyncImageSliderHash() => r'c1c06f1105a929d536e5ecc87d38ecab9c42e761';
-
-/// See also [AsyncImageSlider].
-@ProviderFor(AsyncImageSlider)
-final asyncImageSliderProvider = AutoDisposeAsyncNotifierProvider<
-    AsyncImageSlider, List<ImageSlider>>.internal(
-  AsyncImageSlider.new,
-  name: r'asyncImageSliderProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$asyncImageSliderHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef _$AsyncImageSlider = AutoDisposeAsyncNotifier<List<ImageSlider>>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

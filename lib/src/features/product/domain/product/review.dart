@@ -8,14 +8,14 @@ part 'review.g.dart';
 @freezed
 class Review with _$Review {
   factory Review({
-    required int iDReview,
-    required int iDProduct,
-    required int iDCus,
-    required String createdOn,
-    required String contentShort,
-    required String contentLong,
-    required int rating,
-    required int isDeleted,
+    @JsonKey(name: 'IDReview') required int iDReview,
+    @JsonKey(name: 'IDProduct') required int iDProduct,
+    @JsonKey(name: 'IDCus') required int iDCus,
+    @JsonKey(name: 'CreatedOn') required String createdOn,
+    @JsonKey(name: 'ContentShort') required String contentShort,
+    @JsonKey(name: 'ContentLong') required String contentLong,
+    @JsonKey(name: 'Rating') required int rating,
+    @JsonKey(name: 'IsDeleted') required int isDeleted,
     List<ImageReview>? images,
   }) = _Review;
 

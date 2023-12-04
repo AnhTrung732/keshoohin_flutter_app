@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:keshoohin_flutter_app/src/common/utils/app_colors.dart';
 import 'package:keshoohin_flutter_app/src/common/utils/app_styles.dart';
-import 'package:keshoohin_flutter_app/src/common/utils/constants/nav_list.dart';
 import 'package:badges/badges.dart' as badges;
+import 'package:keshoohin_flutter_app/src/common/utils/nav_list.dart';
 
 class AppNestedNavigation extends ConsumerWidget {
   const AppNestedNavigation({
@@ -104,7 +105,7 @@ class AppNestedNavigation extends ConsumerWidget {
           Text(
             item['title'].toString().tr(),
             style: const TextStyle(
-              color: Colors.red,
+              color: AppColors.primaryThirdElement,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -116,6 +117,7 @@ class AppNestedNavigation extends ConsumerWidget {
   Widget _buildUnselectedNavItem(
       BuildContext context, Map<String, dynamic> item) {
     return badges.Badge(
+      badgeStyle : const badges.BadgeStyle(badgeColor: AppColors.primaryElement),
       position: badges.BadgePosition.custom(top: -6, end: -6),
       showBadge: item["isNoti"],
       badgeContent: item["isNoti"] ? item["futureToGetBadge"] : const Text(""),
@@ -126,7 +128,7 @@ class AppNestedNavigation extends ConsumerWidget {
   Widget _buildNavItemIcon(BuildContext context, Map<String, dynamic> item) {
     return SvgPicture.asset(
       item["iconPath"]!,
-      color: item['id'] == child.currentIndex ? Colors.red : null,
+      color: item['id'] == child.currentIndex ? AppColors.primaryThirdElement : null,
       width: 24,
     );
   }

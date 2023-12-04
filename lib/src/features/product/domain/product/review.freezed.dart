@@ -20,13 +20,21 @@ Review _$ReviewFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Review {
+  @JsonKey(name: 'IDReview')
   int get iDReview => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IDProduct')
   int get iDProduct => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IDCus')
   int get iDCus => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedOn')
   String get createdOn => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ContentShort')
   String get contentShort => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ContentLong')
   String get contentLong => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Rating')
   int get rating => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsDeleted')
   int get isDeleted => throw _privateConstructorUsedError;
   List<ImageReview>? get images => throw _privateConstructorUsedError;
 
@@ -41,14 +49,14 @@ abstract class $ReviewCopyWith<$Res> {
       _$ReviewCopyWithImpl<$Res, Review>;
   @useResult
   $Res call(
-      {int iDReview,
-      int iDProduct,
-      int iDCus,
-      String createdOn,
-      String contentShort,
-      String contentLong,
-      int rating,
-      int isDeleted,
+      {@JsonKey(name: 'IDReview') int iDReview,
+      @JsonKey(name: 'IDProduct') int iDProduct,
+      @JsonKey(name: 'IDCus') int iDCus,
+      @JsonKey(name: 'CreatedOn') String createdOn,
+      @JsonKey(name: 'ContentShort') String contentShort,
+      @JsonKey(name: 'ContentLong') String contentLong,
+      @JsonKey(name: 'Rating') int rating,
+      @JsonKey(name: 'IsDeleted') int isDeleted,
       List<ImageReview>? images});
 }
 
@@ -124,14 +132,14 @@ abstract class _$$ReviewImplCopyWith<$Res> implements $ReviewCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {int iDReview,
-      int iDProduct,
-      int iDCus,
-      String createdOn,
-      String contentShort,
-      String contentLong,
-      int rating,
-      int isDeleted,
+      {@JsonKey(name: 'IDReview') int iDReview,
+      @JsonKey(name: 'IDProduct') int iDProduct,
+      @JsonKey(name: 'IDCus') int iDCus,
+      @JsonKey(name: 'CreatedOn') String createdOn,
+      @JsonKey(name: 'ContentShort') String contentShort,
+      @JsonKey(name: 'ContentLong') String contentLong,
+      @JsonKey(name: 'Rating') int rating,
+      @JsonKey(name: 'IsDeleted') int isDeleted,
       List<ImageReview>? images});
 }
 
@@ -201,14 +209,14 @@ class __$$ReviewImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ReviewImpl implements _Review {
   _$ReviewImpl(
-      {required this.iDReview,
-      required this.iDProduct,
-      required this.iDCus,
-      required this.createdOn,
-      required this.contentShort,
-      required this.contentLong,
-      required this.rating,
-      required this.isDeleted,
+      {@JsonKey(name: 'IDReview') required this.iDReview,
+      @JsonKey(name: 'IDProduct') required this.iDProduct,
+      @JsonKey(name: 'IDCus') required this.iDCus,
+      @JsonKey(name: 'CreatedOn') required this.createdOn,
+      @JsonKey(name: 'ContentShort') required this.contentShort,
+      @JsonKey(name: 'ContentLong') required this.contentLong,
+      @JsonKey(name: 'Rating') required this.rating,
+      @JsonKey(name: 'IsDeleted') required this.isDeleted,
       final List<ImageReview>? images})
       : _images = images;
 
@@ -216,20 +224,28 @@ class _$ReviewImpl implements _Review {
       _$$ReviewImplFromJson(json);
 
   @override
+  @JsonKey(name: 'IDReview')
   final int iDReview;
   @override
+  @JsonKey(name: 'IDProduct')
   final int iDProduct;
   @override
+  @JsonKey(name: 'IDCus')
   final int iDCus;
   @override
+  @JsonKey(name: 'CreatedOn')
   final String createdOn;
   @override
+  @JsonKey(name: 'ContentShort')
   final String contentShort;
   @override
+  @JsonKey(name: 'ContentLong')
   final String contentLong;
   @override
+  @JsonKey(name: 'Rating')
   final int rating;
   @override
+  @JsonKey(name: 'IsDeleted')
   final int isDeleted;
   final List<ImageReview>? _images;
   @override
@@ -298,33 +314,41 @@ class _$ReviewImpl implements _Review {
 
 abstract class _Review implements Review {
   factory _Review(
-      {required final int iDReview,
-      required final int iDProduct,
-      required final int iDCus,
-      required final String createdOn,
-      required final String contentShort,
-      required final String contentLong,
-      required final int rating,
-      required final int isDeleted,
+      {@JsonKey(name: 'IDReview') required final int iDReview,
+      @JsonKey(name: 'IDProduct') required final int iDProduct,
+      @JsonKey(name: 'IDCus') required final int iDCus,
+      @JsonKey(name: 'CreatedOn') required final String createdOn,
+      @JsonKey(name: 'ContentShort') required final String contentShort,
+      @JsonKey(name: 'ContentLong') required final String contentLong,
+      @JsonKey(name: 'Rating') required final int rating,
+      @JsonKey(name: 'IsDeleted') required final int isDeleted,
       final List<ImageReview>? images}) = _$ReviewImpl;
 
   factory _Review.fromJson(Map<String, dynamic> json) = _$ReviewImpl.fromJson;
 
   @override
+  @JsonKey(name: 'IDReview')
   int get iDReview;
   @override
+  @JsonKey(name: 'IDProduct')
   int get iDProduct;
   @override
+  @JsonKey(name: 'IDCus')
   int get iDCus;
   @override
+  @JsonKey(name: 'CreatedOn')
   String get createdOn;
   @override
+  @JsonKey(name: 'ContentShort')
   String get contentShort;
   @override
+  @JsonKey(name: 'ContentLong')
   String get contentLong;
   @override
+  @JsonKey(name: 'Rating')
   int get rating;
   @override
+  @JsonKey(name: 'IsDeleted')
   int get isDeleted;
   @override
   List<ImageReview>? get images;

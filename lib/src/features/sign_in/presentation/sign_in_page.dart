@@ -54,13 +54,13 @@ class _SignInPageState extends ConsumerState<SignInPage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           buildThirdPartyLogin(_controller),
-                          text14Normal(text: "Or use email account to login"),
+                          const Text14Normal(text: "Or use email account to login"),
                           SizedBox(height: 20.h),
                           appTextFieldItem(
                               controller: _controller.emailController,
                               icon: const Icon(
                                 Icons.email,
-                                color: AppColors.primarySecondeElement,
+                                color: AppColors.primarySecondElement,
                               ),
                               text: "Email",
                               hintText: "Enter your Email",
@@ -72,7 +72,7 @@ class _SignInPageState extends ConsumerState<SignInPage> {
                               controller: _controller.passwordController,
                               icon: const Icon(
                                 Icons.lock,
-                                color: AppColors.primarySecondeElement,
+                                color: AppColors.primarySecondElement,
                               ),
                               text: "Password",
                               hintText: "Enter your Password",

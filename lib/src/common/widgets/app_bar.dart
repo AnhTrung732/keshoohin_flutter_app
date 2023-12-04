@@ -7,7 +7,7 @@ AppBar appBar(BuildContext context, String text) {
     centerTitle: true,
     leading: IconButton(
       icon:
-          const Icon(Icons.arrow_back, color: AppColors.primarySecondeElement),
+          const Icon(Icons.arrow_back, color: AppColors.primarySecondElement),
       onPressed: () {
         Navigator.pop(context);
       },
@@ -19,6 +19,6 @@ AppBar appBar(BuildContext context, String text) {
         height: 1,
       ),
     ),
-    title: text16Normal(text: text, color: AppColors.primaryText),
+    title: Text16Normal(text: text, color: AppColors.primaryText),
   );
 }
