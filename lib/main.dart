@@ -2,14 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:keshoohin_flutter_app/src/common/global/app_state_notifier.dart';
-import 'package:keshoohin_flutter_app/src/common/utils/api_config.dart';
-import 'package:keshoohin_flutter_app/src/common/utils/app_styles.dart';
-import 'package:keshoohin_flutter_app/src/common/global/app_init.dart';
-import 'package:keshoohin_flutter_app/src/services/dio/dio_provider.dart';
-import 'package:keshoohin_flutter_app/src/services/routing/app_routes.dart';
-import 'package:keshoohin_flutter_app/src/services/storage/storage_provider.dart';
-import 'package:provider/provider.dart';
+import 'package:keshoohin_flutter_app/src/core/core_export.dart';
 
 Future<void> main() async {
   await AppInit.init();
@@ -47,11 +40,11 @@ class _MyAppState extends ConsumerState<MyApp> {
     // await ref.read(storageRepositoryProvider).setLoginState(false);
     // ref.read(appStateNotifierProvider.notifier).setloginState(false);
     await ref.read(appStateNotifierProvider.notifier).onAppStart();
-    var obj1 = ref.read(dioProvider);
-    var obj2 = ref.read(dioProvider);
-    if (obj1.hashCode == obj2.hashCode) {
-      print("I am singleton class");
-    }
+    // var obj1 = ref.read(dioProvider);
+    // var obj2 = ref.read(dioProvider);
+    // if (obj1.hashCode == obj2.hashCode) {
+    //   print("I am singleton class");
+    // }
   }
 
   @override
