@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:keshoohin_flutter_app/src/core/widgets/widgets_export.dart';
-import 'package:keshoohin_flutter_app/src/features/catalog/collection/presentation/widgets/home_page_widgets.dart';
+import 'package:keshoohin_flutter_app/src/features/catalog/presentation/widgets/home_page_widgets.dart';
 import 'package:keshoohin_flutter_app/src/features/catalog/product/domain/response/image_response_entity.dart';
 
 class ProductDetailImageView extends ConsumerStatefulWidget {
