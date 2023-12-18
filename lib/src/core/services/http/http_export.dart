@@ -1,2 +1,2 @@
-export 'dio_provider.dart';
+export 'dio.dart';
 export 'http_util.dart';

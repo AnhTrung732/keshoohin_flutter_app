@@ -1,20 +1,28 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:keshoohin_flutter_app/src/core/services/http/connectiviy_checker.dart';
 import 'package:keshoohin_flutter_app/src/core/services/http/http_export.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'http_util.g.dart';
 
 @Riverpod(keepAlive: true)
-// 4. update the declaration
 HttpUtil httpUtil(HttpUtilRef ref) {
-  return HttpUtil(dio: ref.read(dioProvider), ref: ref);
+  return HttpUtil(
+      dio: ref.read(dioProvider),
+      ref: ref,
+      connectivityChecker: ref.read(connectivityCheckerProvider));
 }
 
 class HttpUtil {
   final Dio dio;
   final Ref ref;
-  HttpUtil({required this.dio, required this.ref});
+  final ConnectivityChecker connectivityChecker;
+
+  HttpUtil(
+      {required this.dio,
+      required this.ref,
+      required this.connectivityChecker});
 
   // Map<String, dynamic>? getAuthorizationHeader() {
   //   var headers = <String, dynamic>{};
@@ -24,6 +32,10 @@ class HttpUtil {
   //   }
   //   return headers;
   // }
+  Future<bool> _getConnectionState() async {
+    final bool result = await connectivityChecker.checkConnectivity();
+    return result;
+  }
 
   post(
     String path, {
@@ -38,12 +50,15 @@ class HttpUtil {
     // if (authorization != null) {
     //   requestOptions.headers!.addAll(authorization);
     // }
-    var response = await dio.post(
-      path,
-      data: data,
-      queryParameters: queryParameters,
-      options: options,
-    );
+
+    var response = await _getConnectionState()
+        ? dio.post(
+            path,
+            data: data,
+            queryParameters: queryParameters,
+            options: options,
+          )
+        : null;
 
     return response;
   }
@@ -56,12 +71,14 @@ class HttpUtil {
     Options requestOptions = options ?? Options();
     requestOptions.headers = requestOptions.headers ?? {};
 
-    var response = await dio.get(
-      path,
-      queryParameters: queryParameters,
-      options: requestOptions,
-    );
-
+    var response = await _getConnectionState()
+        ? dio.get(
+            path,
+            queryParameters: queryParameters,
+            options: requestOptions,
+          )
+        : null;
+    
     return response;
   }
 }

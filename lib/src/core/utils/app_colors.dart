@@ -13,12 +13,14 @@ class AppColors {
   //static const Color primaryElement = Color.fromARGB(255, 61, 61, 216);
   //static const Color primaryElement = Color.fromARGB(255, 1, 71, 42);
   static const Color primaryElement = Color.fromRGBO(255, 174, 183, 1);
-  // main element color black
-  static const Color primarySecondElement = Color.fromARGB(255, 0, 0, 0);
 
-  static const Color primaryThirdElement = Color.fromARGB(255, 42, 5, 71);
+  static const Color primarySecondElement = Color.fromARGB(255, 255, 174, 183);
+
+  static const Color primaryThirdElement = Color.fromARGB(255, 250, 179, 156);
 
   static const Color primaryFourthElement = Color.fromARGB(255, 71, 5, 34);
+
+  static const Color primaryFifthElement = Color.fromARGB(255, 71, 5, 34);
   // main text color black
   static const Color primaryText = Color.fromARGB(255, 0, 0, 0);
   // main widget text color white
@@ -31,6 +33,8 @@ class AppColors {
       Color.fromARGB(255, 170, 170, 170);
   static const Color primaryFourthElementText =
       Color.fromARGB(255, 214, 214, 214);
+  static const Color primaryFifthElementText =
+      Color.fromARGB(255, 245, 245, 245);
   static const Color primaryFifthText = Color.fromARGB(255, 71, 42, 5);
   static const Color primaryElementStatus = Color.fromARGB(255, 88, 174, 127);
   static const Color primaryElementBg = Color.fromARGB(255, 238, 121, 99);

@@ -22,7 +22,7 @@ CartProductResponseEntity _$CartProductResponseEntityFromJson(
 /// @nodoc
 mixin _$CartProductResponseEntity {
   int get quantity => throw _privateConstructorUsedError;
-  ProductResponseEntity get product => throw _privateConstructorUsedError;
+  ProductResponseModel get product => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,9 +36,9 @@ abstract class $CartProductResponseEntityCopyWith<$Res> {
           $Res Function(CartProductResponseEntity) then) =
       _$CartProductResponseEntityCopyWithImpl<$Res, CartProductResponseEntity>;
   @useResult
-  $Res call({int quantity, ProductResponseEntity product});
+  $Res call({int quantity, ProductResponseModel product});
 
-  $ProductResponseEntityCopyWith<$Res> get product;
+  $ProductResponseModelCopyWith<$Res> get product;
 }
 
 /// @nodoc
@@ -66,14 +66,14 @@ class _$CartProductResponseEntityCopyWithImpl<$Res,
       product: null == product
           ? _value.product
           : product // ignore: cast_nullable_to_non_nullable
-              as ProductResponseEntity,
+              as ProductResponseModel,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $ProductResponseEntityCopyWith<$Res> get product {
-    return $ProductResponseEntityCopyWith<$Res>(_value.product, (value) {
+  $ProductResponseModelCopyWith<$Res> get product {
+    return $ProductResponseModelCopyWith<$Res>(_value.product, (value) {
       return _then(_value.copyWith(product: value) as $Val);
     });
   }
@@ -87,10 +87,10 @@ abstract class _$$CartProductImplCopyWith<$Res>
       __$$CartProductImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int quantity, ProductResponseEntity product});
+  $Res call({int quantity, ProductResponseModel product});
 
   @override
-  $ProductResponseEntityCopyWith<$Res> get product;
+  $ProductResponseModelCopyWith<$Res> get product;
 }
 
 /// @nodoc
@@ -115,7 +115,7 @@ class __$$CartProductImplCopyWithImpl<$Res>
       product: null == product
           ? _value.product
           : product // ignore: cast_nullable_to_non_nullable
-              as ProductResponseEntity,
+              as ProductResponseModel,
     ));
   }
 }
@@ -131,7 +131,7 @@ class _$CartProductImpl implements _CartProduct {
   @override
   final int quantity;
   @override
-  final ProductResponseEntity product;
+  final ProductResponseModel product;
 
   @override
   String toString() {
@@ -169,7 +169,7 @@ class _$CartProductImpl implements _CartProduct {
 abstract class _CartProduct implements CartProductResponseEntity {
   const factory _CartProduct(
       {required final int quantity,
-      required final ProductResponseEntity product}) = _$CartProductImpl;
+      required final ProductResponseModel product}) = _$CartProductImpl;
 
   factory _CartProduct.fromJson(Map<String, dynamic> json) =
       _$CartProductImpl.fromJson;
@@ -177,7 +177,7 @@ abstract class _CartProduct implements CartProductResponseEntity {
   @override
   int get quantity;
   @override
-  ProductResponseEntity get product;
+  ProductResponseModel get product;
   @override
   @JsonKey(ignore: true)
   _$$CartProductImplCopyWith<_$CartProductImpl> get copyWith =>

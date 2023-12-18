@@ -121,6 +121,29 @@ class Text16Normal extends StatelessWidget {
   }
 }
 
+class Text18Normal extends StatelessWidget {
+  const Text18Normal(
+      {super.key,
+      this.text = "",
+      this.color = AppColors.primaryFifthElement,
+      this.fontWeight = FontWeight.normal});
+  final String text;
+  final Color color;
+  final FontWeight fontWeight;
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      textAlign: TextAlign.center,
+      style: TextStyle(
+          color: color,
+          fontFamily: 'OpenSans',
+          fontSize: 18.sp,
+          fontWeight: fontWeight),
+    );
+  }
+}
+
 class Text20Normal extends StatelessWidget {
   const Text20Normal(
       {super.key,
@@ -140,6 +163,57 @@ class Text20Normal extends StatelessWidget {
           fontFamily: 'OpenSans',
           fontSize: 20.sp,
           fontWeight: fontWeight),
+    );
+  }
+}
+
+class Text24Normal extends StatelessWidget {
+  const Text24Normal(
+      {super.key,
+      this.text = "",
+      this.color = AppColors.primaryThirdElementText,
+      this.fontWeight = FontWeight.bold});
+  final String text;
+  final Color color;
+  final FontWeight fontWeight;
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      textAlign: TextAlign.start,
+      style: TextStyle(
+          color: color,
+          fontFamily: 'OpenSans',
+          fontSize: 24.sp,
+          fontWeight: fontWeight),
+    );
+  }
+}
+
+class TextLineThrough extends StatelessWidget {
+  const TextLineThrough(
+      {super.key,
+      this.text = "",
+      this.fontWeight = FontWeight.normal,
+      this.fontSize = 14});
+  final String text;
+  final FontWeight fontWeight;
+  final double fontSize;
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {},
+      child: Text(
+        text,
+        style: TextStyle(
+            backgroundColor: AppColors.primaryElement,
+            color: AppColors.primaryElementText,
+            decoration: TextDecoration.lineThrough,
+            decorationColor: AppColors.primaryElementText,
+            fontWeight: fontWeight,
+            fontSize: fontSize,
+            fontFamily: 'OpenSans'),
+      ),
     );
   }
 }
@@ -170,7 +244,6 @@ class TextUnderline extends StatelessWidget {
     );
   }
 }
-
 
 class TextSpanUnderline extends StatelessWidget {
   const TextSpanUnderline({
@@ -270,7 +343,7 @@ class EllipsisText extends StatelessWidget {
     this.text = "",
     this.color = AppColors.primaryFifthText,
     this.fontSize = 16,
-    this.fontWeight = FontWeight.bold,
+    this.fontWeight = FontWeight.normal,
     this.textAlign = TextAlign.start,
   });
   final String text;

@@ -42,7 +42,7 @@ mixin _$CollectionResponseModel {
   @JsonKey(name: 'CoverImagePath')
   String? get coverImagePath => throw _privateConstructorUsedError;
   @JsonKey(name: 'Products')
-  List<ProductResponseEntity>? get collectionproducts =>
+  List<ProductResponseModel>? get collectionproducts =>
       throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -69,7 +69,7 @@ abstract class $CollectionResponseModelCopyWith<$Res> {
       @JsonKey(name: 'EndOn') String endOn,
       @JsonKey(name: 'CoverImagePath') String? coverImagePath,
       @JsonKey(name: 'Products')
-      List<ProductResponseEntity>? collectionproducts});
+      List<ProductResponseModel>? collectionproducts});
 }
 
 /// @nodoc
@@ -142,7 +142,7 @@ class _$CollectionResponseModelCopyWithImpl<$Res,
       collectionproducts: freezed == collectionproducts
           ? _value.collectionproducts
           : collectionproducts // ignore: cast_nullable_to_non_nullable
-              as List<ProductResponseEntity>?,
+              as List<ProductResponseModel>?,
     ) as $Val);
   }
 }
@@ -168,7 +168,7 @@ abstract class _$$CollectionResponseModelImplCopyWith<$Res>
       @JsonKey(name: 'EndOn') String endOn,
       @JsonKey(name: 'CoverImagePath') String? coverImagePath,
       @JsonKey(name: 'Products')
-      List<ProductResponseEntity>? collectionproducts});
+      List<ProductResponseModel>? collectionproducts});
 }
 
 /// @nodoc
@@ -240,7 +240,7 @@ class __$$CollectionResponseModelImplCopyWithImpl<$Res>
       collectionproducts: freezed == collectionproducts
           ? _value._collectionproducts
           : collectionproducts // ignore: cast_nullable_to_non_nullable
-              as List<ProductResponseEntity>?,
+              as List<ProductResponseModel>?,
     ));
   }
 }
@@ -260,7 +260,7 @@ class _$CollectionResponseModelImpl extends _CollectionResponseModel {
       @JsonKey(name: 'EndOn') required this.endOn,
       @JsonKey(name: 'CoverImagePath') this.coverImagePath,
       @JsonKey(name: 'Products')
-      final List<ProductResponseEntity>? collectionproducts})
+      final List<ProductResponseModel>? collectionproducts})
       : _collectionproducts = collectionproducts,
         super._();
 
@@ -297,10 +297,10 @@ class _$CollectionResponseModelImpl extends _CollectionResponseModel {
   @override
   @JsonKey(name: 'CoverImagePath')
   final String? coverImagePath;
-  final List<ProductResponseEntity>? _collectionproducts;
+  final List<ProductResponseModel>? _collectionproducts;
   @override
   @JsonKey(name: 'Products')
-  List<ProductResponseEntity>? get collectionproducts {
+  List<ProductResponseModel>? get collectionproducts {
     final value = _collectionproducts;
     if (value == null) return null;
     if (_collectionproducts is EqualUnmodifiableListView)
@@ -385,7 +385,7 @@ abstract class _CollectionResponseModel extends CollectionResponseModel {
           @JsonKey(name: 'EndOn') required final String endOn,
           @JsonKey(name: 'CoverImagePath') final String? coverImagePath,
           @JsonKey(name: 'Products')
-          final List<ProductResponseEntity>? collectionproducts}) =
+          final List<ProductResponseModel>? collectionproducts}) =
       _$CollectionResponseModelImpl;
   _CollectionResponseModel._() : super._();
 
@@ -424,7 +424,7 @@ abstract class _CollectionResponseModel extends CollectionResponseModel {
   String? get coverImagePath;
   @override
   @JsonKey(name: 'Products')
-  List<ProductResponseEntity>? get collectionproducts;
+  List<ProductResponseModel>? get collectionproducts;
   @override
   @JsonKey(ignore: true)
   _$$CollectionResponseModelImplCopyWith<_$CollectionResponseModelImpl>

@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:keshoohin_flutter_app/src/features/catalog/product/domain/response/product_response_entity.dart';
+import 'package:keshoohin_flutter_app/src/features/catalog/infrastructure/model/response/product_response_model.dart';
 
 part 'cart_product_response_entity.freezed.dart';
 part 'cart_product_response_entity.g.dart';
@@ -8,7 +8,7 @@ part 'cart_product_response_entity.g.dart';
 class CartProductResponseEntity with _$CartProductResponseEntity {
   const factory CartProductResponseEntity({
     required int quantity,
-    required ProductResponseEntity product,
+    required ProductResponseModel product,
   }) = _CartProduct;
 
   factory CartProductResponseEntity.fromJson(Map<String, dynamic> json) =>

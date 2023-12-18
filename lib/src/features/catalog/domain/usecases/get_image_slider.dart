@@ -9,7 +9,7 @@ class GetImageSlider
   GetImageSlider({required this.catalogRepository});
 
   @override
-  Future<List<ImageSliderEntity>?> call([void params]) {
+  Future<List<ImageSliderEntity>> call([void params]) {
     return catalogRepository.getImageSlider();
   }
 }

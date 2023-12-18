@@ -4,10 +4,11 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:keshoohin_flutter_app/src/core/core_export.dart';
 import 'package:keshoohin_flutter_app/src/features/catalog/domain/entities/entities_export.dart';
 import 'package:keshoohin_flutter_app/src/features/catalog/presentation/controller/home_controller.dart';
-
+import 'package:keshoohin_flutter_app/src/features/catalog/presentation/widgets/home_page_product_item.dart';
 
 class AppHomeFlashSaleHeader extends StatefulWidget {
   late int seconds;
@@ -118,16 +119,15 @@ class _FlashSaleHeaderState extends State<AppHomeFlashSaleHeader> {
 
 class AppHomeFlashSaleBox extends ConsumerWidget {
   final int seconds;
+  final bool isVisible;
   final ScrollController _controller = ScrollController();
 
-  AppHomeFlashSaleBox(this.seconds, {super.key});
+  AppHomeFlashSaleBox(this.seconds, {required this.isVisible, super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final asyncCollection = ref.watch(homeCollectionProvider);
-    final selected = ref.watch(homePageMenuBarSelectorProvider).last;
-    bool isVisible = false;
-    (selected == 1) || (selected == -1) ? isVisible = true : false;
+    final homeCollection = ref.watch(homeCollectionControllerProvider);
+
     return Visibility(
       visible: isVisible,
       child: Container(
@@ -148,7 +148,7 @@ class AppHomeFlashSaleBox extends ConsumerWidget {
             Stack(
               alignment: Alignment.centerRight,
               children: [
-                _buildProductList(asyncCollection, context),
+                _buildProductList(homeCollection, context),
                 _buildNavigationButtons(context),
               ],
             ),
@@ -159,29 +159,28 @@ class AppHomeFlashSaleBox extends ConsumerWidget {
   }
 
   Widget _buildProductList(
-      AsyncValue<CollectionEntity?> asyncImageSlider,
-      BuildContext context) {
-    return asyncImageSlider.when(
+      AsyncValue<CollectionEntity?> homeCollection, BuildContext context) {
+    return homeCollection.when(
         loading: () => _buildSkeletonList(context),
         error: (error, stack) => _buildSkeletonList(context),
         data: (collection) => SingleChildScrollView(
               controller: _controller,
               scrollDirection: Axis.horizontal,
-              // child: Row(
-              //   children: [
-              //     for (var product in collection.)
-              //       SizedBox(
-              //         width: MediaQuery.of(context).size.width * 0.5,
-              //         child: ProductItemCard(
-              //             func: () => context.goNamed(APP_PAGE.product.toName,
-              //                     pathParameters: {
-              //                       'index': product.idProduct.toString()
-              //                     }),
-              //             product: product,
-              //             height: MediaQuery.of(context).size.height * 0.4),
-              //       )
-              //   ],
-              // ),
+              child: Row(
+                children: [
+                  for (var product in collection!.collectionproducts!)
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.5,
+                      child: ProductItemCard(
+                          func: () => context.goNamed(APP_PAGE.product.toName,
+                                  pathParameters: {
+                                    'index': product.idProduct.toString()
+                                  }),
+                          product: product,
+                          height: MediaQuery.of(context).size.height * 0.4),
+                    )
+                ],
+              ),
             ));
   }
 

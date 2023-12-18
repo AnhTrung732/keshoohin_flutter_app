@@ -1,11 +1,11 @@
+import 'package:keshoohin_flutter_app/src/features/catalog/di_cataglog.dart';
 import 'package:keshoohin_flutter_app/src/features/catalog/domain/collection_domain_export.dart';
 import 'package:keshoohin_flutter_app/src/features/catalog/domain/entities/entities_export.dart';
-import 'package:keshoohin_flutter_app/src/features/catalog/domain/usecases/provider/catalog_usescases_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'home_controller.g.dart';
 
 @Riverpod(keepAlive: true)
-class HomeImageSlider extends _$HomeImageSlider {
+class HomeImageSliderController extends _$HomeImageSliderController {
   @override
   FutureOr<List<ImageSliderEntity>?> build() async {
     return fetchImageSliderList();
@@ -18,7 +18,7 @@ class HomeImageSlider extends _$HomeImageSlider {
 }
 
 @riverpod
-class HomeCollection extends _$HomeCollection {
+class HomeCollectionController extends _$HomeCollectionController {
   @override
   FutureOr<CollectionEntity?> build() async {
     return fetchCollection(65);
@@ -31,7 +31,7 @@ class HomeCollection extends _$HomeCollection {
 }
 
 @Riverpod(keepAlive: true)
-class HomePageBannerDots extends _$HomePageBannerDots {
+class HomePageBannerDotsController extends _$HomePageBannerDotsController {
   @override
   int build() => 0;
 
@@ -41,7 +41,8 @@ class HomePageBannerDots extends _$HomePageBannerDots {
 }
 
 @Riverpod(keepAlive: true)
-class HomePageMenuBarSelector extends _$HomePageMenuBarSelector {
+class HomePageMenuBarSelectorController
+    extends _$HomePageMenuBarSelectorController {
   @override
   List<int> build() => [0];
 

@@ -1,48 +1,52 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:keshoohin_flutter_app/src/core/utils/image_res.dart';
 import 'package:keshoohin_flutter_app/src/core/utils/utils_export.dart';
 import 'package:keshoohin_flutter_app/src/core/widgets/app_image.dart';
 import 'package:keshoohin_flutter_app/src/core/widgets/app_shadow.dart';
 import 'package:keshoohin_flutter_app/src/core/widgets/app_textfields.dart';
 
+class AppSearchBar extends ConsumerStatefulWidget {
+  const AppSearchBar({super.key});
 
-Widget appSearchBar() {
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    children: [
-      //search text box
-      Container(
-          width: 280.w,
-          height: 40.h,
-          decoration: appBoxShadow(
-              color: AppColors.primaryFourthElementText,
-              boxBorder: Border.all(color: AppColors.primaryFourthElementText)),
-          child: Row(
-            children: [
-              Container(
-                margin: EdgeInsets.only(left: 17.w),
-                child: appImage(imagePath: ImageRes.searchIcon),
-              ),
-              SizedBox(
-                width: 240.w,
-                height: 40.h,
-                child: appTextFieldOnly(
-                    width: 240,
-                    height: 40,
-                    hintText: "Tìm sản phẩm của bạn .."),
-              )
-            ],
-          )),
-      GestureDetector(
-          child: Container(
-            padding: EdgeInsets.all(5.w),
-        width: 40.w,
-        height: 40.h,
-        decoration: appBoxShadow(
-            boxBorder: Border.all(color: AppColors.primaryElement)),
-        child: appImageWithColor(imagePath: ImageRes.filterIcon, color: AppColors.primaryElementText),
-      ))
-    ],
-  );
+  @override
+  ConsumerState<ConsumerStatefulWidget> createState() => _AppSearchBarState();
+}
+
+class _AppSearchBarState extends ConsumerState<AppSearchBar> {
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        //search text box
+        Container(
+            width: 200.w,
+            height: 35.h,
+            decoration: appBoxShadow(
+                color: AppColors.primaryFourthElementText,
+                boxBorder:
+                    Border.all(color: AppColors.primaryFourthElementText)),
+            child: Row(
+              children: [
+                GestureDetector(
+                  onTap: () {},
+                  child: Container(
+                    margin: EdgeInsets.only(left: 10.w),
+                    child: appImage(imagePath: ImageRes.searchIcon),
+                  ),
+                ),
+                SizedBox(
+                  width: 160.w,
+                  height: 35.h,
+                  child: const AppTextFieldOnly(
+                      width: 160,
+                      height: 35,
+                      hintText: "Tìm sản phẩm của bạn .."),
+                )
+              ],
+            )),
+      ],
+    );
+  }
 }

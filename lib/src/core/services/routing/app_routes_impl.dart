@@ -3,11 +3,11 @@ import 'package:go_router/go_router.dart';
 import 'package:keshoohin_flutter_app/src/core/services/routing/app_routes_name.dart';
 import 'package:keshoohin_flutter_app/src/core/services/services_export.dart';
 import 'package:keshoohin_flutter_app/src/core/widgets/app_nested_navigation.dart';
+import 'package:keshoohin_flutter_app/src/features/catalog/domain/entities/product_entity.dart';
 import 'package:keshoohin_flutter_app/src/features/catalog/presentation/pages/category_page.dart';
 import 'package:keshoohin_flutter_app/src/features/catalog/presentation/pages/home_page.dart';
-import 'package:keshoohin_flutter_app/src/features/catalog/product/domain/response/image_response_entity.dart';
-import 'package:keshoohin_flutter_app/src/features/catalog/product/presentation/product_detail_page.dart';
-import 'package:keshoohin_flutter_app/src/features/catalog/product/presentation/widgets/product_detail_image_view.dart';
+import 'package:keshoohin_flutter_app/src/features/catalog/presentation/pages/product_detail_page.dart';
+import 'package:keshoohin_flutter_app/src/features/catalog/presentation/widgets/product_detail_image_view.dart';
 import 'package:keshoohin_flutter_app/src/features/customer/sign_in/presentation/sign_in_page.dart';
 import 'package:keshoohin_flutter_app/src/features/customer/sign_up/presentation/sign_up_page.dart';
 import 'package:keshoohin_flutter_app/src/features/customer/user/presentation/user_page.dart';
@@ -114,9 +114,8 @@ StatefulShellRoute appStatefulShellRoute() {
                       path: APP_PAGE.productImages.toPath,
                       name: APP_PAGE.productImages.toName,
                       builder: (context, state) {
-                        
-                        List<ImageProductResponseEntity> imageList =
-                            state.extra as List<ImageProductResponseEntity>;
+                        List<ImageProductEntity> imageList =
+                            state.extra as List<ImageProductEntity>;
                         return ProductDetailImageView(
                           imageList: imageList,
                           initImage: int.parse(state.uri.queryParameters[

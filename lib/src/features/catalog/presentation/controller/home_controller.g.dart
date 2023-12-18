@@ -6,71 +6,74 @@ part of 'home_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$homeImageSliderHash() => r'2e68a60441deb25861c245f48df33a76d46507a1';
+String _$homeImageSliderControllerHash() =>
+    r'27a06e327ecf07bd178361bd9aaee4b952c6a31b';
 
-/// See also [HomeImageSlider].
-@ProviderFor(HomeImageSlider)
-final homeImageSliderProvider =
-    AsyncNotifierProvider<HomeImageSlider, List<ImageSliderEntity>?>.internal(
-  HomeImageSlider.new,
-  name: r'homeImageSliderProvider',
+/// See also [HomeImageSliderController].
+@ProviderFor(HomeImageSliderController)
+final homeImageSliderControllerProvider = AsyncNotifierProvider<
+    HomeImageSliderController, List<ImageSliderEntity>?>.internal(
+  HomeImageSliderController.new,
+  name: r'homeImageSliderControllerProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$homeImageSliderHash,
+      : _$homeImageSliderControllerHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$HomeImageSlider = AsyncNotifier<List<ImageSliderEntity>?>;
-String _$homeCollectionHash() => r'9525422bb99bc5eb7d35d2c46311af6ec1863594';
+typedef _$HomeImageSliderController = AsyncNotifier<List<ImageSliderEntity>?>;
+String _$homeCollectionControllerHash() =>
+    r'979907f2cac4873e2b25a6acf70387b9fd29be60';
 
-/// See also [HomeCollection].
-@ProviderFor(HomeCollection)
-final homeCollectionProvider = AutoDisposeAsyncNotifierProvider<HomeCollection,
-    CollectionEntity?>.internal(
-  HomeCollection.new,
-  name: r'homeCollectionProvider',
+/// See also [HomeCollectionController].
+@ProviderFor(HomeCollectionController)
+final homeCollectionControllerProvider = AutoDisposeAsyncNotifierProvider<
+    HomeCollectionController, CollectionEntity?>.internal(
+  HomeCollectionController.new,
+  name: r'homeCollectionControllerProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$homeCollectionHash,
+      : _$homeCollectionControllerHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$HomeCollection = AutoDisposeAsyncNotifier<CollectionEntity?>;
-String _$homePageBannerDotsHash() =>
-    r'124412da195e1a59184f35cac07a4fe1f62d9a8c';
+typedef _$HomeCollectionController
+    = AutoDisposeAsyncNotifier<CollectionEntity?>;
+String _$homePageBannerDotsControllerHash() =>
+    r'a4a4413e6ae6578cde61e4a6f467a781b7a32bbd';
 
-/// See also [HomePageBannerDots].
-@ProviderFor(HomePageBannerDots)
-final homePageBannerDotsProvider =
-    NotifierProvider<HomePageBannerDots, int>.internal(
-  HomePageBannerDots.new,
-  name: r'homePageBannerDotsProvider',
+/// See also [HomePageBannerDotsController].
+@ProviderFor(HomePageBannerDotsController)
+final homePageBannerDotsControllerProvider =
+    NotifierProvider<HomePageBannerDotsController, int>.internal(
+  HomePageBannerDotsController.new,
+  name: r'homePageBannerDotsControllerProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$homePageBannerDotsHash,
+      : _$homePageBannerDotsControllerHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$HomePageBannerDots = Notifier<int>;
-String _$homePageMenuBarSelectorHash() =>
-    r'3d4d4dab99a32de91bc11bec64178d643d2b30a0';
+typedef _$HomePageBannerDotsController = Notifier<int>;
+String _$homePageMenuBarSelectorControllerHash() =>
+    r'c3a4598f3b89aebd9a96677b2e159c709e0d2fac';
 
-/// See also [HomePageMenuBarSelector].
-@ProviderFor(HomePageMenuBarSelector)
-final homePageMenuBarSelectorProvider =
-    NotifierProvider<HomePageMenuBarSelector, List<int>>.internal(
-  HomePageMenuBarSelector.new,
-  name: r'homePageMenuBarSelectorProvider',
+/// See also [HomePageMenuBarSelectorController].
+@ProviderFor(HomePageMenuBarSelectorController)
+final homePageMenuBarSelectorControllerProvider =
+    NotifierProvider<HomePageMenuBarSelectorController, List<int>>.internal(
+  HomePageMenuBarSelectorController.new,
+  name: r'homePageMenuBarSelectorControllerProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$homePageMenuBarSelectorHash,
+      : _$homePageMenuBarSelectorControllerHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$HomePageMenuBarSelector = Notifier<List<int>>;
+typedef _$HomePageMenuBarSelectorController = Notifier<List<int>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
