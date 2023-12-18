@@ -20,8 +20,7 @@ _$CollectionResponseModelImpl _$$CollectionResponseModelImplFromJson(
       endOn: json['EndOn'] as String,
       coverImagePath: json['CoverImagePath'] as String?,
       collectionproducts: (json['Products'] as List<dynamic>?)
-          ?.map(
-              (e) => ProductResponseEntity.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => ProductResponseModel.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

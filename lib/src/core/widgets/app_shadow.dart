@@ -6,22 +6,38 @@ import 'package:skeletons/skeletons.dart';
 
 BoxDecoration appBoxShadow({
   Color color = AppColors.primaryElement,
+  Color color_1 = AppColors.primarySecondElement,
+  Color color_2 = AppColors.primaryThirdElement,
   double radius = 15,
   double sR = 1,
   double bR = 1,
   BoxBorder? boxBorder,
+  bool isGradient = false,
 }) {
   return BoxDecoration(
-      color: color,
-      borderRadius: BorderRadius.circular(radius),
-      border: boxBorder,
-      boxShadow: [
-        BoxShadow(
-            color: Colors.grey.withOpacity(0.1),
-            spreadRadius: sR,
-            blurRadius: bR,
-            offset: const Offset(0, 1))
-      ]);
+    color: color,
+    borderRadius: BorderRadius.circular(radius),
+    border: boxBorder,
+    boxShadow: [
+      BoxShadow(
+          color: Colors.grey.withOpacity(0.1),
+          spreadRadius: sR,
+          blurRadius: bR,
+          offset: const Offset(0, 1))
+    ],
+    gradient: isGradient
+        ? LinearGradient(
+            begin: Alignment.bottomLeft,
+            end: Alignment.topRight,
+            stops: const [
+              0.1,
+              0.3,
+              0.7,
+            ],
+            colors: [color, color_1, color_2],
+          )
+        : null,
+  );
 }
 
 BoxDecoration appBoxShadowWithRadius({
@@ -148,10 +164,12 @@ class AppProductGridSkeleton extends StatelessWidget {
 
 class AppProductCardSkeleton extends StatelessWidget {
   const AppProductCardSkeleton({
-    super.key, this.width = 80, this.height = 240,
+    super.key,
+    this.width = 80,
+    this.height = 240,
   });
   final double width;
-  final double height; 
+  final double height;
   @override
   Widget build(BuildContext context) {
     return Container(

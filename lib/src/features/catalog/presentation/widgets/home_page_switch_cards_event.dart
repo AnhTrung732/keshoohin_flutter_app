@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:keshoohin_flutter_app/src/features/catalog/presentation/controller/home_controller.dart';
 
-
 class AppHomeSwitchCardsEvent extends ConsumerStatefulWidget {
-  const AppHomeSwitchCardsEvent({super.key});
-
+  const AppHomeSwitchCardsEvent({required this.isVisible, super.key});
+  final bool isVisible;
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
       _AppHomeSwitchCardsEventState();
 }
 
-class _AppHomeSwitchCardsEventState extends ConsumerState<AppHomeSwitchCardsEvent> {
+class _AppHomeSwitchCardsEventState
+    extends ConsumerState<AppHomeSwitchCardsEvent> {
   final List<Map<String, String>> listImage = [
     {
       'path': '65',
@@ -37,15 +37,12 @@ class _AppHomeSwitchCardsEventState extends ConsumerState<AppHomeSwitchCardsEven
 
   @override
   Widget build(BuildContext context) {
-    final selected = ref.watch(homePageMenuBarSelectorProvider).last;
-    bool isVisible = false;
-    (selected == 2) || (selected == -1) ? isVisible = true : false;
     return Visibility(
-      visible: isVisible,
+      visible: widget.isVisible,
       child: AspectRatio(
         aspectRatio: 1,
         child: Container(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           alignment: Alignment.center,
           child: Stack(
             children: [
@@ -89,7 +86,7 @@ class _AppHomeSwitchCardsEventState extends ConsumerState<AppHomeSwitchCardsEven
             }
           },
           feedback: ClipRRect(
-            borderRadius:  BorderRadius.circular(10.0),
+            borderRadius: BorderRadius.circular(10.0),
             child: Image.network(
               imageData['img']!,
               scale: 2,

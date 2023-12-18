@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:keshoohin_flutter_app/src/features/catalog/domain/entities/product_entity.dart';
 
 class CollectionEntity extends Equatable {
   const CollectionEntity(
@@ -11,7 +12,8 @@ class CollectionEntity extends Equatable {
       this.wallPaperPath,
       required this.startOn,
       required this.endOn,
-      this.coverImagePath});
+      this.coverImagePath,
+      this.collectionproducts});
   final int idCollection;
   final String nameCollection;
   final String? routePath;
@@ -22,7 +24,7 @@ class CollectionEntity extends Equatable {
   final String startOn;
   final String endOn;
   final String? coverImagePath;
-  //final List<ProductEntity>? collectionproducts;
+  final List<ProductEntity>? collectionproducts;
 
   @override
   List<Object?> get props => <Object?>[

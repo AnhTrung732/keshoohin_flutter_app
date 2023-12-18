@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:keshoohin_flutter_app/src/core/utils/mapper/data_mapper.dart';
-import 'package:keshoohin_flutter_app/src/features/catalog/domain/entities/entities_export.dart';
-import 'package:keshoohin_flutter_app/src/features/catalog/product/domain/response/product_response_entity.dart';
+import 'package:keshoohin_flutter_app/src/features/catalog/domain/collection_domain_export.dart';
+import 'package:keshoohin_flutter_app/src/features/catalog/infrastructure/model/response/product_response_model.dart';
 part 'collection_response_model.freezed.dart';
 part 'collection_response_model.g.dart';
 
@@ -19,7 +19,7 @@ class CollectionResponseModel with _$CollectionResponseModel {
     @JsonKey(name: 'StartOn') required String startOn,
     @JsonKey(name: 'EndOn') required String endOn,
     @JsonKey(name: 'CoverImagePath') String? coverImagePath,
-    @JsonKey(name: 'Products') List<ProductResponseEntity>? collectionproducts,
+    @JsonKey(name: 'Products') List<ProductResponseModel>? collectionproducts,
   }) = _CollectionResponseModel;
 
   factory CollectionResponseModel.fromJson(Map<String, dynamic> json) =>
@@ -35,6 +35,8 @@ class CollectionResponseModel with _$CollectionResponseModel {
       wallPaperPath: wallPaperPath ?? '',
       startOn: startOn,
       endOn: endOn,
+      collectionproducts:
+          collectionproducts?.map((product) => product.mapToEntity()).toList(),
     );
   }
 }

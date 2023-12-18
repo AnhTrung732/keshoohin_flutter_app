@@ -6,7 +6,8 @@ import 'package:keshoohin_flutter_app/src/core/widgets/app_cached_network_image.
 class AppCaroulselSliderNetworkImage extends ConsumerStatefulWidget {
   const AppCaroulselSliderNetworkImage(
       this.imageList, this.onImageTap, this.onPageChanged,
-      {super.key});
+      {required this.boxFit, super.key});
+  final BoxFit boxFit;
   final List<dynamic> imageList;
   final void Function(BuildContext context, dynamic image) onImageTap;
   final void Function(int index) onPageChanged;
@@ -31,7 +32,10 @@ class _AppCaroulselSliderNetworkImageState
       items: widget.imageList.map((image) {
         return InkWell(
           onTap: () => widget.onImageTap(context, image),
-          child: AppCachedNetworkImage(imageUrl: image.path!),
+          child: AppCachedNetworkImage(
+            imageUrl: image.path!,
+            boxFit: widget.boxFit,
+          ),
         );
       }).toList(),
       carouselController: buttonCarouselController,

@@ -9,7 +9,7 @@ part of 'cart_product_response_entity.dart';
 _$CartProductImpl _$$CartProductImplFromJson(Map<String, dynamic> json) =>
     _$CartProductImpl(
       quantity: json['quantity'] as int,
-      product: ProductResponseEntity.fromJson(
+      product: ProductResponseModel.fromJson(
           json['product'] as Map<String, dynamic>),
     );
 

@@ -7,35 +7,6 @@ import 'package:keshoohin_flutter_app/src/core/core_export.dart';
 import 'package:keshoohin_flutter_app/src/features/catalog/domain/collection_domain_export.dart';
 import 'package:keshoohin_flutter_app/src/features/catalog/presentation/controller/home_controller.dart';
 
-AppBar apphomeAppBar({
-  isVisible = true,
-}) {
-  return AppBar(
-    title: Container(
-      margin: EdgeInsets.only(left: 7.w, right: 7.w),
-      child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-        Visibility(
-          visible: isVisible,
-          child: GestureDetector(
-            child: const Icon(Icons.menu),
-          ),
-        ),
-        Row(
-          children: [
-            GestureDetector(
-              child: const Icon(Icons.send),
-            ),
-            SizedBox(width: 20.w),
-            GestureDetector(
-              child: const Icon(Icons.shopping_bag_outlined),
-            )
-          ],
-        )
-      ]),
-    ),
-  );
-}
-
 class AppHomeGreeting extends ConsumerWidget {
   const AppHomeGreeting({super.key});
 
@@ -45,11 +16,11 @@ class AppHomeGreeting extends ConsumerWidget {
     final name = ref.read(storageRepositoryProvider).getNameUser();
     return Row(
       children: [
-        const Text20Normal(
+        const Text16Normal(
             text: "Xin chào, ",
             color: AppColors.primaryThirdElementText,
             fontWeight: FontWeight.bold),
-        Text20Normal(
+        Text16Normal(
             text: name ?? "người dùng mới",
             color: AppColors.primaryText,
             fontWeight: FontWeight.bold),
@@ -63,7 +34,7 @@ class AppHomeBanner extends StatelessWidget {
   final WidgetRef ref;
   @override
   Widget build(BuildContext context) {
-    final asyncImageSlides = ref.watch(homeImageSliderProvider);
+    final asyncImageSlides = ref.watch(homeImageSliderControllerProvider);
     return asyncImageSlides.when(
         data: (value) => appHomeBannerContent(value, ref),
         error: (error, stackTrace) => Column(children: [
@@ -91,13 +62,15 @@ Widget appHomeBannerContent(
           child: AppCaroulselSliderNetworkImage(
             listImagSlider!,
             (context, image) {},
-            (index) =>
-                ref.read(homePageBannerDotsProvider.notifier).setIndex(index),
+            (index) => ref
+                .read(homePageBannerDotsControllerProvider.notifier)
+                .setIndex(index),
+            boxFit: BoxFit.fill,
           ),
         ),
         SizedBox(height: 5.h),
         DotsIndicator(
-          position: ref.watch(homePageBannerDotsProvider),
+          position: ref.watch(homePageBannerDotsControllerProvider),
           dotsCount: listImagSlider.length,
           mainAxisAlignment: MainAxisAlignment.center,
           decorator: DotsDecorator(
@@ -138,7 +111,7 @@ class _AppHomeMenuBarState extends ConsumerState<AppHomeMenuBar> {
   @override
   Widget build(BuildContext context) {
     bool isSelectMenuBar =
-        ref.watch(homePageMenuBarSelectorProvider).last != -1;
+        ref.watch(homePageMenuBarSelectorControllerProvider).last != -1;
 
     return Column(
       children: [
@@ -158,10 +131,12 @@ class _AppHomeMenuBarState extends ConsumerState<AppHomeMenuBar> {
                   onTap: () {
                     isShowAll == true
                         ? ref
-                            .read(homePageMenuBarSelectorProvider.notifier)
+                            .read(homePageMenuBarSelectorControllerProvider
+                                .notifier)
                             .addIndex(-1)
                         : ref
-                            .read(homePageMenuBarSelectorProvider.notifier)
+                            .read(homePageMenuBarSelectorControllerProvider
+                                .notifier)
                             .popLastIndex();
                     setState(() {
                       isShowAll = !isShowAll;
@@ -187,7 +162,7 @@ class AppHomeMenuBarSelector extends ConsumerWidget {
   const AppHomeMenuBarSelector({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    int selected = ref.watch(homePageMenuBarSelectorProvider).last;
+    int selected = ref.watch(homePageMenuBarSelectorControllerProvider).last;
     return Row(
       children: menuBarSelectionItems.map((item) {
         final index = menuBarSelectionItems.indexOf(item);
@@ -196,7 +171,9 @@ class AppHomeMenuBarSelector extends ConsumerWidget {
         return GestureDetector(
           onTap: () {
             // Handle onTap action
-            ref.read(homePageMenuBarSelectorProvider.notifier).addIndex(index);
+            ref
+                .read(homePageMenuBarSelectorControllerProvider.notifier)
+                .addIndex(index);
           },
           child: Container(
             margin: EdgeInsets.only(left: isFirst ? 0 : 15.w),
