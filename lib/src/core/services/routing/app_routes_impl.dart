@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:keshoohin_flutter_app/src/core/common_provider/common_provider.dart';
 import 'package:keshoohin_flutter_app/src/core/services/routing/app_routes_name.dart';
 import 'package:keshoohin_flutter_app/src/core/services/services_export.dart';
 import 'package:keshoohin_flutter_app/src/core/widgets/app_nested_navigation.dart';
+import 'package:keshoohin_flutter_app/src/core/widgets/controller/app_controller.dart';
 import 'package:keshoohin_flutter_app/src/features/catalog/domain/entities/product_entity.dart';
 import 'package:keshoohin_flutter_app/src/features/catalog/presentation/pages/category_page.dart';
 import 'package:keshoohin_flutter_app/src/features/catalog/presentation/pages/home_page.dart';
@@ -15,6 +17,7 @@ import 'package:keshoohin_flutter_app/src/features/customer/user/presentation/we
 import 'package:keshoohin_flutter_app/src/features/map/presentation/map_page.dart';
 import 'package:keshoohin_flutter_app/src/features/notification/presentation/notification_page.dart';
 import 'package:keshoohin_flutter_app/src/features/search/presentation/search_page.dart';
+import 'package:riverpod/riverpod.dart';
 
 final parentNavigatorKey = GlobalKey<NavigatorState>();
 final homeTabNavigatorKey = GlobalKey<NavigatorState>();
@@ -75,7 +78,7 @@ GoRoute searchPageRoute() => GoRoute(
       builder: (context, state) => const SearchPage(),
     );
 
-StatefulShellRoute appStatefulShellRoute() {
+StatefulShellRoute appStatefulShellRoute(Ref ref) {
   return StatefulShellRoute.indexedStack(
     parentNavigatorKey: parentNavigatorKey,
     pageBuilder: (
@@ -84,7 +87,7 @@ StatefulShellRoute appStatefulShellRoute() {
       StatefulNavigationShell child,
     ) {
       return getPage(
-        child: AppNestedNavigation(
+        child: AppNestedNavigationBar(
           child: child,
         ),
         state: state,
@@ -109,6 +112,12 @@ StatefulShellRoute appStatefulShellRoute() {
                         idProduct: int.parse(state
                             .pathParameters[APP_PAGE.product.toParameter]!),
                       ),
+                  onExit: (context) {
+                    ref
+                        .read(hasProductBarControllerProvider.notifier)
+                        .removeProductBar();
+                    return true;
+                  },
                   routes: [
                     GoRoute(
                       path: APP_PAGE.productImages.toPath,

@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:keshoohin_flutter_app/src/core/utils/mapper/data_mapper.dart';
 import 'package:keshoohin_flutter_app/src/features/catalog/domain/collection_domain_export.dart';
-import 'package:keshoohin_flutter_app/src/features/catalog/infrastructure/model/response/product_response_model.dart';
+import 'package:keshoohin_flutter_app/src/features/catalog/infrastructure/models/response/product_response_model.dart';
 part 'collection_response_model.freezed.dart';
 part 'collection_response_model.g.dart';
 
