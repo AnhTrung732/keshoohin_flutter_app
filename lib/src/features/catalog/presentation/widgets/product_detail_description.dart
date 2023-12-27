@@ -4,7 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:keshoohin_flutter_app/src/core/core_export.dart';
 import 'package:keshoohin_flutter_app/src/features/catalog/presentation/controller/product_detail_controller.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 
 class ProductDetailDiscription extends ConsumerStatefulWidget {
   const ProductDetailDiscription({required this.description, super.key});
@@ -78,7 +77,6 @@ class _MyExpandableWidgetState extends ConsumerState<OverlayExpandableWidget> {
       child: GestureDetector(
         onTap: () {
           setState(() {
-            //ref.read(expandInitControllerProvider.notifier).hasInit();
             ref.read(expandMoreStateControllerProvider.notifier).changeState();
             ref.read(expandHeightControllerProvider.notifier).setExpandHeight();
             ref

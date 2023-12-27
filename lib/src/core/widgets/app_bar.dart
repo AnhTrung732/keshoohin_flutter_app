@@ -3,14 +3,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:keshoohin_flutter_app/src/core/core_export.dart';
 import 'package:keshoohin_flutter_app/src/core/utils/utils_export.dart';
-import 'package:keshoohin_flutter_app/src/core/widgets/text_widgets.dart';
+import 'package:keshoohin_flutter_app/src/core/widgets/app_text_widgets.dart';
+import 'package:keshoohin_flutter_app/src/core/widgets/controller/app_controller.dart';
 
 AppBar appBar(BuildContext context, String text) {
   return AppBar(
     centerTitle: true,
     leading: IconButton(
-      icon:
-          const Icon(Icons.arrow_back, color: AppColors.primarySecondElement),
+      icon: const Icon(Icons.arrow_back, color: AppColors.primarySecondElement),
       onPressed: () {
         Navigator.pop(context);
       },
@@ -26,29 +26,59 @@ AppBar appBar(BuildContext context, String text) {
   );
 }
 
-
-class MyAppBar extends ConsumerStatefulWidget implements PreferredSizeWidget {
-  const MyAppBar({required this.isCanPop, super.key});
-  final bool isCanPop;
+class HomeAppBar extends ConsumerStatefulWidget implements PreferredSizeWidget {
+  const HomeAppBar({super.key});
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _MyAppBarState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _HomeAppBarState();
 
   @override
   Size get preferredSize => Size.fromHeight(70.h);
 }
 
-class _MyAppBarState extends ConsumerState<MyAppBar> {
+class _HomeAppBarState extends ConsumerState<HomeAppBar> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      leading: widget.isCanPop
-          ? GestureDetector(
-              onTap: () => Navigator.pop(context),
-              child: const Icon(Icons.chevron_left),
-            )
-          : GestureDetector(
-              child: const Icon(Icons.menu),
-            ),
+      leading: GestureDetector(
+        child: const Icon(Icons.menu),
+      ),
+      automaticallyImplyLeading: false,
+      actions: [
+        const AppSearchBar(),
+        SizedBox(width: 20.w),
+        GestureDetector(
+          child: const Icon(Icons.send_rounded),
+        ),
+        SizedBox(width: 20.w),
+        GestureDetector(
+          child: const Icon(Icons.production_quantity_limits),
+        ),
+        SizedBox(width: 20.w),
+      ],
+    );
+  }
+}
+
+class ProductAppBar extends ConsumerStatefulWidget
+    implements PreferredSizeWidget {
+  const ProductAppBar({super.key});
+  @override
+  ConsumerState<ConsumerStatefulWidget> createState() => _ProductAppBarState();
+
+  @override
+  Size get preferredSize => Size.fromHeight(70.h);
+}
+
+class _ProductAppBarState extends ConsumerState<ProductAppBar> {
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      leading: GestureDetector(
+        onTap: () {
+          Navigator.pop(context);
+        },
+        child: const Icon(Icons.chevron_left),
+      ),
       automaticallyImplyLeading: false,
       actions: [
         const AppSearchBar(),

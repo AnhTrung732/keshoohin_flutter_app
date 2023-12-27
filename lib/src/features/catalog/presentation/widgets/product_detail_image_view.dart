@@ -34,7 +34,7 @@ class _ProductDetailImageDetailState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const MyAppBar(isCanPop: true),
+      appBar: const ProductAppBar(),
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 25.w),

@@ -26,7 +26,7 @@ class _HomePageState extends ConsumerState<HomePage> {
 
     return SafeArea(
       child: Scaffold(
-        appBar: const MyAppBar(isCanPop: false),
+        appBar: const HomeAppBar(),
         body: AppLiquidPullToRefresh(
           onRefreshFunc: () async {
             await Future.wait<void>([

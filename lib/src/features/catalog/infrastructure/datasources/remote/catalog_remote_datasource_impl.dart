@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:keshoohin_flutter_app/src/core/services/services_export.dart';
 import 'package:keshoohin_flutter_app/src/core/utils/utils_export.dart';
-import 'package:keshoohin_flutter_app/src/features/catalog/infrastructure/datasources/remote_datasources.dart/catalog_remote_datasource.dart';
-import 'package:keshoohin_flutter_app/src/features/catalog/infrastructure/model/response/collection_response_model.dart';
-import 'package:keshoohin_flutter_app/src/features/catalog/infrastructure/model/response/image_slider_response_model.dart';
-import 'package:keshoohin_flutter_app/src/features/catalog/infrastructure/model/response/product_response_model.dart';
+import 'package:keshoohin_flutter_app/src/features/catalog/infrastructure/datasources/remote/catalog_remote_datasource.dart';
+import 'package:keshoohin_flutter_app/src/features/catalog/infrastructure/models/response/collection_response_model.dart';
+import 'package:keshoohin_flutter_app/src/features/catalog/infrastructure/models/response/image_slider_response_model.dart';
+import 'package:keshoohin_flutter_app/src/features/catalog/infrastructure/models/response/product_response_model.dart';
 
 class CatalogRemoteDataSourceImpl extends CatalogRemoteDataSource {
   final HttpUtil httpUtil;

@@ -277,5 +277,78 @@ final overlayHeightControllerProvider =
 );
 
 typedef _$OverlayHeightController = AutoDisposeNotifier<double?>;
+String _$productScrollDirectionControllerHash() =>
+    r'1fce832a3aef09e13c1c3940c6f840eed23f61e8';
+
+/// See also [ProductScrollDirectionController].
+@ProviderFor(ProductScrollDirectionController)
+final productScrollDirectionControllerProvider = NotifierProvider<
+    ProductScrollDirectionController, ScrollDirection>.internal(
+  ProductScrollDirectionController.new,
+  name: r'productScrollDirectionControllerProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$productScrollDirectionControllerHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$ProductScrollDirectionController = Notifier<ScrollDirection>;
+String _$productPageItemScrollControllerHash() =>
+    r'8d576c3886b9c2c740aa4d0e7f267422cc24bc2a';
+
+/// See also [ProductPageItemScrollController].
+@ProviderFor(ProductPageItemScrollController)
+final productPageItemScrollControllerProvider = AutoDisposeNotifierProvider<
+    ProductPageItemScrollController, ItemScrollController>.internal(
+  ProductPageItemScrollController.new,
+  name: r'productPageItemScrollControllerProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$productPageItemScrollControllerHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$ProductPageItemScrollController
+    = AutoDisposeNotifier<ItemScrollController>;
+String _$productTabBarIndexHash() =>
+    r'6ec738abc0cb537d345e49d3d8051c8ab6d14287';
+
+/// See also [ProductTabBarIndex].
+@ProviderFor(ProductTabBarIndex)
+final productTabBarIndexProvider =
+    AutoDisposeNotifierProvider<ProductTabBarIndex, int>.internal(
+  ProductTabBarIndex.new,
+  name: r'productTabBarIndexProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$productTabBarIndexHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$ProductTabBarIndex = AutoDisposeNotifier<int>;
+String _$productPageScrollListenerHash() =>
+    r'276b1cf2754a23d3f4fab1b963baac558a5e0fa0';
+
+/// See also [ProductPageScrollListener].
+@ProviderFor(ProductPageScrollListener)
+final productPageScrollListenerProvider = AutoDisposeNotifierProvider<
+    ProductPageScrollListener, ItemPositionsListener>.internal(
+  ProductPageScrollListener.new,
+  name: r'productPageScrollListenerProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$productPageScrollListenerHash,
+  dependencies: <ProviderOrFamily>[productTabBarIndexProvider],
+  allTransitiveDependencies: <ProviderOrFamily>{
+    productTabBarIndexProvider,
+    ...?productTabBarIndexProvider.allTransitiveDependencies
+  },
+);
+
+typedef _$ProductPageScrollListener
+    = AutoDisposeNotifier<ItemPositionsListener>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

@@ -1,178 +1,201 @@
+import 'dart:async';
+
+import 'package:animated_notch_bottom_bar/animated_notch_bottom_bar/animated_notch_bottom_bar.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:badges/badges.dart' as badges;
-import 'package:keshoohin_flutter_app/src/core/utils/utils_export.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:ionicons/ionicons.dart';
+import 'package:keshoohin_flutter_app/src/core/core_export.dart';
+import 'package:keshoohin_flutter_app/src/core/widgets/controller/app_controller.dart';
+import 'package:keshoohin_flutter_app/src/features/catalog/presentation/widgets/product_detail_bottom_navigation_bar.dart';
+import 'package:line_icons/line_icons.dart';
 
-List<Map<String, dynamic>> navList = [
-  {
-    'id': 0,
-    "title": "home",
-    "iconPath": "assets/icons/icon_house.svg",
-    "routePath": "",
-    "isNoti": false,
-    "futureToGetBadge": null
-  },
-  {
-    'id': 1,
-    "title": "explore",
-    "iconPath": "assets/icons/icon_lipstick.svg",
-    "routePath": "",
-    "isNoti": false,
-    "futureToGetBadge": null
-  },
-  {
-    'id': 2,
-    "title": "notifications",
-    "iconPath": "assets/icons/icon_bell.svg",
-    "routePath": "",
-    "isNoti": true,
-    "futureToGetBadge": null
-  },
-  {
-    'id': 3,
-    "title": "stores",
-    "iconPath": "assets/icons/icon_map.svg",
-    "routePath": "",
-    "isNoti": false,
-    "futureToGetBadge": null
-  },
-  {
-    'id': 4,
-    "title": "account",
-    "iconPath": "assets/icons/User.svg",
-    "routePath": "",
-    "isNoti": true,
-    "futureToGetBadge": null
-  }
-];
-
-class AppNestedNavigation extends ConsumerWidget {
-  const AppNestedNavigation({
-    Key? key,
-    required this.child,
-  }) : super(key: key ?? const ValueKey('ScaffoldWithNestedNavigation'));
-
+class AppNestedNavigationBar extends ConsumerStatefulWidget {
+  const AppNestedNavigationBar({required this.child, super.key});
   final StatefulNavigationShell child;
+  @override
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _AppNestedNavigationBarState();
+}
 
-  void _goBranch(int index, BuildContext context) {
-    child.goBranch(
-      index,
-      initialLocation: index == child.currentIndex,
-    );
+class _AppNestedNavigationBarState
+    extends ConsumerState<AppNestedNavigationBar> {
+  bool _isLeftScrolled = false;
+  bool _isRightScrolled = false;
+  double _horizontalDragDistance = 0.0;
+  final double _threshold = 30.0;
+  Timer? _autoScrollTimer;
+  @override
+  Widget build(BuildContext context) {
+    bool hasProductBar = ref.watch(hasProductBarControllerProvider);
+    return Scaffold(
+        body: widget.child,
+        bottomNavigationBar: hasProductBar == true
+            ? bottomNavigationBar(context)
+            : BottomNavigationBar(child: widget.child));
   }
+
+  Widget bottomNavigationBar(BuildContext context) {
+    void cancelAutoScrollTimer() {
+      // Cancel the timer if it's running
+      if (_autoScrollTimer != null && _autoScrollTimer!.isActive) {
+        _autoScrollTimer!.cancel();
+      }
+    }
+
+    void startAutoScrollTimer() {
+      // Cancel any existing timer
+      //cancelAutoScrollTimer();
+      // Start a new timer to change to _isRightScrolled after a delay
+      _autoScrollTimer = Timer(const Duration(seconds: 8), () {
+        setState(() {
+          _isLeftScrolled = true;
+          _isRightScrolled = false;
+        });
+      });
+    }
+
+    return GestureDetector(
+        onHorizontalDragUpdate: (details) {
+          // Update the accumulated horizontal drag distance
+          _horizontalDragDistance += details.primaryDelta!;
+
+          // Check for left scroll
+          if (_horizontalDragDistance < -_threshold) {
+            print("left scroll");
+            setState(() {
+              _isLeftScrolled = true;
+              _isRightScrolled = false;
+            });
+
+            cancelAutoScrollTimer();
+          }
+          // Check for right scroll
+          else if (_horizontalDragDistance > _threshold) {
+            print("right scroll");
+
+            setState(() {
+              _isLeftScrolled = false;
+              _isRightScrolled = true;
+            });
+            // Start a timer to automatically change to _isLeftScrolled
+
+            startAutoScrollTimer();
+          } else {
+            setState(() {
+              _isLeftScrolled = false;
+              _isRightScrolled = false;
+            });
+          }
+        },
+        onHorizontalDragEnd: (details) {
+          // Reset the accumulated horizontal drag distance when drag ends
+          _horizontalDragDistance = 0.0;
+          // Cancel the auto-scroll timer if it's running
+          cancelAutoScrollTimer();
+        },
+        child: SizedBox(
+          height: 60.h,
+          child: Center(
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: AnimatedSwitcher(
+                switchInCurve: Curves.easeInOutBack,
+                switchOutCurve: Curves.easeInOutBack,
+                duration: const Duration(milliseconds: 500),
+                transitionBuilder: (Widget child, Animation<double> animation) {
+                  final slideTween = _isLeftScrolled == true
+                      ? Tween<Offset>(
+                          begin: const Offset(1.0, 0.0), end: Offset.zero)
+                      : _isRightScrolled == true
+                          ? Tween<Offset>(
+                              begin: const Offset(-1.0, 0.0), end: Offset.zero)
+                          : Tween<Offset>(
+                              begin: const Offset(1.0, 0.0), end: Offset.zero);
+                  final slideAnimation = slideTween.animate(animation);
+
+                  return SlideTransition(
+                    position: slideAnimation,
+                    child: child,
+                  );
+                },
+                child: _isLeftScrolled == true
+                    ? const ProductBottomNaviagtionBar()
+                    : _isRightScrolled == true
+                        ? BottomNavigationBar(child: widget.child)
+                        : const ProductBottomNaviagtionBar(),
+              ),
+            ),
+          ),
+        ));
+  }
+}
+
+class BottomNavigationBar extends ConsumerWidget {
+  const BottomNavigationBar({required this.child, super.key});
+  final StatefulNavigationShell child;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // Use watch to get providers
+    return SizedBox(
+        height: 60.h,
+        child: Center(
+          child: GNav(
+            selectedIndex: child.currentIndex,
+            mainAxisAlignment: MainAxisAlignment.center,
+            tabBorderRadius: 14,
+            tabActiveBorder: Border.all(
+                color: AppColors.primaryElement, width: 1), // tab button border
 
-    return Scaffold(
-      body: child,
-      bottomNavigationBar: buildBottomNavigationBar(context),
-    );
-  }
-
-  Widget buildBottomNavigationBar(BuildContext context) {
-    return Container(
-      decoration: _buildContainerDecoration(context),
-      padding: _buildContainerPadding(context),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: _buildNavigationItems(context),
-      ),
-    );
-  }
-
-  BoxDecoration _buildContainerDecoration(BuildContext context) {
-    return BoxDecoration(
-      color: Theme.of(context).own().defaultContainerColor,
-      borderRadius: const BorderRadius.only(
-        topLeft: Radius.circular(5),
-        topRight: Radius.circular(5),
-      ),
-      boxShadow: [
-        BoxShadow(
-          color: Theme.of(context).own().defaultScaffoldColor,
-          spreadRadius: 1,
-        ),
-      ],
-    );
-  }
-
-  EdgeInsets _buildContainerPadding(BuildContext context) {
-    return EdgeInsets.symmetric(
-      vertical: 5,
-      horizontal: Theme.of(context).own().defaultVerticalPaddingOfScreen,
-    );
-  }
-
-  List<Widget> _buildNavigationItems(BuildContext context) {
-    return [
-      for (var i in navList) _buildNavigationItem(context, i),
-    ];
-  }
-
-  Widget _buildNavigationItem(BuildContext context, Map<String, dynamic> item) {
-    return InkWell(
-      onTap: () {
-        _goBranch(item['id'], context);
-      },
-      child: Container(
-        child: _buildNavItemContent(context, item),
-      ),
-    );
-  }
-
-  Widget _buildNavItemContent(BuildContext context, Map<String, dynamic> item) {
-    return (item['id'] == child.currentIndex)
-        ? _buildSelectedNavItem(context, item)
-        : _buildUnselectedNavItem(context, item);
-  }
-
-  Widget _buildSelectedNavItem(
-      BuildContext context, Map<String, dynamic> item) {
-    return Container(
-      padding: const EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(50),
-        color: const Color.fromRGBO(244, 163, 155, 0.4),
-      ),
-      child: Row(
-        children: [
-          _buildNavItemIcon(context, item),
-          const SizedBox(width: 5),
-          Text(
-            item['title'].toString().tr(),
-            style: const TextStyle(
-              color: AppColors.primaryThirdElement,
-              fontWeight: FontWeight.bold,
-            ),
+            curve: Curves.easeIn, // tab animation curves
+            duration:
+                const Duration(milliseconds: 300), // tab animation duration
+            gap: 10, // the tab button gap between icon and text
+            color: Colors.grey[800], // unselected icon color
+            activeColor:
+                AppColors.primaryElement, // selected icon and text color
+            iconSize: 20, // tab button icon size
+            tabBackgroundColor:
+                AppColors.primaryBackground, // selected tab background color
+            tabMargin: const EdgeInsets.only(top: 5),
+            padding: const EdgeInsets.symmetric(
+                horizontal: 15, vertical: 10), // navigation bar padding
+            tabs: const [
+              GButton(
+                icon: Icons.home_outlined,
+                text: 'Home',
+              ),
+              GButton(
+                icon: LineIcons.box,
+                text: 'Likes',
+              ),
+              GButton(
+                icon: Ionicons.notifications_outline,
+                text: 'Search',
+              ),
+              GButton(
+                icon: LineIcons.map,
+                text: 'Profile',
+              ),
+              GButton(
+                icon: LineIcons.user,
+                text: 'Profile',
+              )
+            ],
+            onTabChange: (int index) => {
+              child.goBranch(
+                index,
+                initialLocation: index == child.currentIndex,
+              )
+            },
           ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildUnselectedNavItem(
-      BuildContext context, Map<String, dynamic> item) {
-    return badges.Badge(
-      badgeStyle: const badges.BadgeStyle(badgeColor: AppColors.primaryElement),
-      position: badges.BadgePosition.custom(top: -6, end: -6),
-      showBadge: item["isNoti"],
-      badgeContent: item["isNoti"] ? item["futureToGetBadge"] : const Text(""),
-      child: _buildNavItemIcon(context, item),
-    );
-  }
-
-  Widget _buildNavItemIcon(BuildContext context, Map<String, dynamic> item) {
-    return SvgPicture.asset(
-      item["iconPath"]!,
-      color: item['id'] == child.currentIndex
-          ? AppColors.primaryThirdElement
-          : null,
-      width: 24,
-    );
+        ));
   }
 }
+
+

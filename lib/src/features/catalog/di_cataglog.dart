@@ -1,8 +1,8 @@
 import 'package:keshoohin_flutter_app/src/core/services/services_export.dart';
 import 'package:keshoohin_flutter_app/src/features/catalog/domain/collection_domain_export.dart';
 import 'package:keshoohin_flutter_app/src/features/catalog/domain/usecases/get_product.dart';
-import 'package:keshoohin_flutter_app/src/features/catalog/infrastructure/datasources/remote_datasources.dart/catalog_remote_datasource.dart';
-import 'package:keshoohin_flutter_app/src/features/catalog/infrastructure/datasources/remote_datasources.dart/catalog_remote_datasource_impl.dart';
+import 'package:keshoohin_flutter_app/src/features/catalog/infrastructure/datasources/remote/catalog_remote_datasource.dart';
+import 'package:keshoohin_flutter_app/src/features/catalog/infrastructure/datasources/remote/catalog_remote_datasource_impl.dart';
 import 'package:keshoohin_flutter_app/src/features/catalog/infrastructure/repositories/catalog_impl.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'di_cataglog.g.dart';
