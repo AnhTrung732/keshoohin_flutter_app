@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:keshoohin_flutter_app/src/core/widgets/app_split_content.dart';
-import 'package:keshoohin_flutter_app/src/core/widgets/controller/app_controller.dart';
 import 'package:keshoohin_flutter_app/src/core/widgets/widgets_export.dart';
 import 'package:keshoohin_flutter_app/src/features/catalog/domain/entities/product_entity.dart';
 import 'package:keshoohin_flutter_app/src/features/catalog/presentation/controller/product_detail_controller.dart';

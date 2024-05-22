@@ -39,14 +39,14 @@ dependencies:
   riverpod_annotation: ^2.3.0
   flutter_riverpod: ^2.4.5
   collection: ^1.17.2
-  go_router: ^12.1.1
+  go_router: ^14.1.3
   riverpod: ^2.4.5
   shortid: ^0.1.2
   page_transition: ^2.1.0
   flutter_signin_button: ^2.0.0
   firebase_auth: ^4.12.1
   firebase_dynamic_links: ^5.4.3
-  firebase_core: ^2.21.0
+  firebase_core: ^2.27.1
   get_it: ^7.6.4
   injectable: ^2.3.2
   easy_localization: ^3.0.3
@@ -54,7 +54,7 @@ dependencies:
   build_runner: ^2.4.6
   freezed: ^2.4.5
   riverpod_generator: ^2.3.5
-  custom_lint: ^0.5.6
+  custom_lint: ^0.6.4
   dio: ^5.3.3
   google_sign_in: ^6.1.6
   shared_preferences: ^2.2.2
@@ -69,13 +69,12 @@ dependencies:
   carousel_slider: ^4.2.1
   add_to_cart_animation: ^2.0.3
   provider: ^6.1.1
-  cached_network_image: ^3.2.3
+  cached_network_image: ^3.3.1
   fluttertoast: ^8.2.4
-  flutter_screenutil: ^5.7.0
+  flutter_screenutil: ^5.9.0
   dots_indicator: ^3.0.0
-  hero_animation: ^1.1.4
   equatable: ^2.0.5
-  connectivity_plus: ^5.0.2
+  connectivity_plus: ^6.0.3
   custom_refresh_indicator: ^3.0.0
   flutter_rating_bar: ^4.0.1
   marquee: ^2.2.3
@@ -100,12 +99,11 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^2.0.0
+  flutter_lints: ^4.0.0
   json_serializable: ^6.7.1
   freezed: ^2.4.5
   injectable_generator: ^2.4.1
   riverpod_generator: ^2.3.5
-  custom_lint: ^0.5.6
   riverpod_lint: ^2.3.3
 
 # For information on the generic Dart part of this file, see the

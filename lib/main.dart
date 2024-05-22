@@ -15,7 +15,7 @@ Future<void> main() async {
       supportedLocales: const [Locale('en', 'US'), Locale('vn', 'VN')],
       path: 'assets/language', // <-- change the path of the translation files
       fallbackLocale: const Locale('en', 'US'),
-      child: const ProviderScope(
+      child: ProviderScope(
         child: MyApp(),
       ),
     ),

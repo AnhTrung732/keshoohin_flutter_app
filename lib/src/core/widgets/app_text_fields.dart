@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:keshoohin_flutter_app/src/core/utils/utils_export.dart';
 import 'package:keshoohin_flutter_app/src/core/widgets/app_shadow.dart';
 import 'package:keshoohin_flutter_app/src/core/widgets/app_text_widgets.dart';
-import 'package:marquee/marquee.dart';
 
 Widget appTextFieldItem({
   TextEditingController? controller,

@@ -71,7 +71,7 @@ Widget appHomeBannerContent(
         SizedBox(height: 5.h),
         DotsIndicator(
           position: ref.watch(homePageBannerDotsControllerProvider),
-          dotsCount: listImagSlider.length,
+          dotsCount: listImagSlider.isNotEmpty ? listImagSlider.length : 5 ,
           mainAxisAlignment: MainAxisAlignment.center,
           decorator: DotsDecorator(
               activeColor: AppColors.primaryElement,

@@ -28,10 +28,10 @@ class AppStateNotifier extends _$AppStateNotifier {
   Future<void> onAppStart() async {
     state = state.copyWith(
         coachGuideState:
-            await ref.read(storageRepositoryProvider).getCoachState() ?? false);
+            ref.read(storageRepositoryProvider).getCoachState() ?? false);
     state = state.copyWith(
         loginState:
-            await ref.read(storageRepositoryProvider).getLoginState() ?? false);
+            ref.read(storageRepositoryProvider).getLoginState() ?? false);
     // This is just to demonstrate the splash screen is working.
     // In real-life applications, it is not recommended to interrupt the user experience by doing such things.
   }

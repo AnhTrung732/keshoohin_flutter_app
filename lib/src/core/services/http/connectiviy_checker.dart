@@ -9,11 +9,11 @@ ConnectivityChecker connectivityChecker(ConnectivityCheckerRef ref) =>
 class ConnectivityChecker {
   Future<bool> checkConnectivity() async {
     final ConnectivityResult connectivityResult =
-        await Connectivity().checkConnectivity();
+        (await Connectivity().checkConnectivity()) as ConnectivityResult;
     return _handleResult(connectivityResult);
   }
 
-  static Stream<ConnectivityResult> listenToConnectivityChanged() {
+  static Stream<List<ConnectivityResult>> listenToConnectivityChanged() {
     return Connectivity().onConnectivityChanged;
   }
 

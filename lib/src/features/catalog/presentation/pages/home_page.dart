@@ -9,7 +9,6 @@ import 'package:keshoohin_flutter_app/src/features/catalog/presentation/widgets/
 import 'package:keshoohin_flutter_app/src/features/catalog/presentation/widgets/home_page_product_item.dart';
 import 'package:keshoohin_flutter_app/src/features/catalog/presentation/widgets/home_page_switch_cards_event.dart';
 import 'package:keshoohin_flutter_app/src/features/catalog/presentation/widgets/home_page_widgets.dart';
-import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 
 class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});

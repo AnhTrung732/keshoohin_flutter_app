@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:keshoohin_flutter_app/src/features/catalog/presentation/controller/home_controller.dart';
 
 class AppHomeSwitchCardsEvent extends ConsumerStatefulWidget {
   const AppHomeSwitchCardsEvent({required this.isVisible, super.key});

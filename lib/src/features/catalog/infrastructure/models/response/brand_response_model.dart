@@ -1,6 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:keshoohin_flutter_app/src/core/utils/mapper/data_mapper.dart';
-import 'package:keshoohin_flutter_app/src/features/catalog/domain/collection_domain_export.dart';
 import 'package:keshoohin_flutter_app/src/features/catalog/domain/entities/brand_entity.dart';
 
 part 'brand_response_model.freezed.dart';

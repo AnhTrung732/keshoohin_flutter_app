@@ -8,7 +8,7 @@ class AppInit {
   static Future init() async {
     WidgetsFlutterBinding.ensureInitialized();
     await EasyLocalization.ensureInitialized();
-    await Firebase.initializeApp();
+    // await Firebase.initializeApp();
     storageService = await StorageService().init();
   }
 }

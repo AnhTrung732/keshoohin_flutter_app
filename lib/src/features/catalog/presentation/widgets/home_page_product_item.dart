@@ -6,7 +6,6 @@ import 'package:keshoohin_flutter_app/src/core/services/services_export.dart';
 import 'package:keshoohin_flutter_app/src/core/utils/utils_export.dart';
 import 'package:keshoohin_flutter_app/src/core/widgets/widgets_export.dart';
 import 'package:keshoohin_flutter_app/src/features/catalog/domain/entities/product_entity.dart';
-import 'package:keshoohin_flutter_app/src/features/catalog/presentation/controller/home_controller.dart';
 import 'package:keshoohin_flutter_app/src/features/catalog/presentation/controller/product_list_page_controller.dart';
 import 'package:keshoohin_flutter_app/src/features/catalog/presentation/widgets/product_detail_heading.dart';
 
@@ -65,41 +64,38 @@ class ProductItemCard extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20.w),
         ),
-        child: Hero(
-          tag: "hero_product_image_${product.idProduct}",
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              AppCachedNetworkImage(imageUrl: product.images![0].path!),
-              Column(mainAxisAlignment: MainAxisAlignment.end, children: [
-                FadeText(text: product.brand!.nameBrand),
-                SizedBox(height: 5.h),
-                FadeText(text: product.nameProduct),
-                SizedBox(height: 5.h),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    FadeText(
-                      text: currencyFormat(product.retailPrice),
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    SizedBox(height: 5.h),
-                    salePercent != 0
-                        ? Padding(
-                            padding: const EdgeInsets.only(left: 5),
-                            child: SalePercentBadge(
-                              salePercent,
-                              textColor: AppColors.primaryElementText,
-                              backGroundColor: AppColors.primaryElement,
-                            ),
-                          )
-                        : Container()
-                  ],
-                )
-              ]),
-            ],
-          ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            AppCachedNetworkImage(imageUrl: product.images![0].path!),
+            Column(mainAxisAlignment: MainAxisAlignment.end, children: [
+              FadeText(text: product.brand!.nameBrand),
+              SizedBox(height: 5.h),
+              FadeText(text: product.nameProduct),
+              SizedBox(height: 5.h),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  FadeText(
+                    text: currencyFormat(product.retailPrice),
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  SizedBox(height: 5.h),
+                  salePercent != 0
+                      ? Padding(
+                          padding: const EdgeInsets.only(left: 5),
+                          child: SalePercentBadge(
+                            salePercent,
+                            textColor: AppColors.primaryElementText,
+                            backGroundColor: AppColors.primaryElement,
+                          ),
+                        )
+                      : Container()
+                ],
+              )
+            ]),
+          ],
         ),
       ),
     );

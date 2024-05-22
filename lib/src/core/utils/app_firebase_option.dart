@@ -19,10 +19,10 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyA0TrOSsh06LxbO6s3MM8SlrZHT3H-0T-U',
-    appId: '1:924177322936:android:4c098fa046100cedecb54d',
+    apiKey: 'AIzaSyApTGEfRFTwFun0nHFUW90tMoQFgMeFIsA',
+    appId: '1:1017087612348:android:f8776486b78075591107b9',
     messagingSenderId: '924177322936',
-    projectId: 'keshoohin-mobile-app-1ea8b',
+    projectId: 'keshoohin-flutter-app',
     storageBucket: 'keshoohin-mobile-app-1ea8b.appspot.com',
   );
 
