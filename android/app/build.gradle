@@ -1,5 +1,6 @@
 plugins {
     id "com.android.application"
+    id "kotlin-android"
     id "dev.flutter.flutter-gradle-plugin"
 }
 
@@ -23,7 +24,7 @@ if (flutterVersionName == null) {
 
 android {
     namespace "com.example.keshoohin_flutter_app"
-    compileSdkVersion flutter.compileSdkVersion
+    compileSdk flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion
 
     compileOptions {
@@ -31,16 +32,24 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "com.example.keshoohin_flutter_app"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
-        minSdkVersion 21
+        minSdkVersion flutter.minSdkVersion
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
-        multiDexEnabled true
+        minSdkVersion 21
     }
 
     buildTypes {
@@ -56,25 +65,4 @@ flutter {
     source '../..'
 }
 
-dependencies {
-    // Add the Firebase BoM (Bill of Materials)
-    implementation platform("com.google.firebase:firebase-bom:32.5.0")
-    implementation 'com.android.support:multidex:2.0.1'
-
-    // Add the Firebase products you want to use
-    // For example, to use Firebase Analytics and Firebase Auth:
-    //implementation 'com.google.firebase:firebase-analytics-ktx'
-    //implementation 'com.google.firebase:firebase-auth-ktx'
-    // Add other Firebase products as needed
-
-    //implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2"
-
-    // Other dependencies for your project
-    //implementation "androidx.core:core-ktx:1.6.0"
-    //implementation "androidx.lifecycle:lifecycle-viewmodel:2.3.1"
-
-    // ... (add any other dependencies your project requires)
-
-}
-
-apply plugin: 'com.google.gms.google-services'
+dependencies {}

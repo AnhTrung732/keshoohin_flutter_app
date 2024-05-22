@@ -107,6 +107,7 @@ class FirebaseAuthenticationImpl extends FirebaseAuthenticationRepository {
     } else {
       return user;
     }
+    return null;
     //return null;
   }
 

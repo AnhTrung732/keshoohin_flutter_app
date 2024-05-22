@@ -31,63 +31,60 @@ class _ProductDetailImagesSliderState extends State<ProductDetailImagesSlider> {
   Widget build(BuildContext context) {
     List<ImageProductEntity> imageList = widget.imageList;
 
-    return Hero(
-      tag: "hero_product_image_${widget.idThisProduct}",
-      child: SizedBox(
-        //decoration: appBoxShadow(color: AppColors.primaryBackground),
-        height: MediaQuery.of(context).size.width * 5 / 6,
-        child: Stack(
-          children: <Widget>[
-            Align(
-              alignment: Alignment.center,
-              child: AppCaroulselSliderNetworkImage(
-                imageList,
-                (context, image) => _onImageTap(context, image),
-                (index) => setState(() {
-                  _current = index;
-                }),
-                boxFit: BoxFit.fill,
+    return SizedBox(
+      //decoration: appBoxShadow(color: AppColors.primaryBackground),
+      height: MediaQuery.of(context).size.width * 5 / 6,
+      child: Stack(
+        children: <Widget>[
+          Align(
+            alignment: Alignment.center,
+            child: AppCaroulselSliderNetworkImage(
+              imageList,
+              (context, image) => _onImageTap(context, image),
+              (index) => setState(() {
+                _current = index;
+              }),
+              boxFit: BoxFit.fill,
+            ),
+          ),
+          Align(
+            alignment: Alignment.bottomLeft,
+            child: Container(
+
+              margin: EdgeInsets.only(left: 25.w, bottom: 20.h),
+              padding: const EdgeInsets.all(5),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(50),
+                color: Colors.black12.withOpacity(0.1),
+              ),
+              child: Text12Normal(
+                text: "${_current + 1}/${imageList.length}",
               ),
             ),
-            Align(
-              alignment: Alignment.bottomLeft,
-              child: Container(
-                
-                margin: EdgeInsets.only(left: 25.w, bottom: 20.h),
-                padding: const EdgeInsets.all(5),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50),
-                  color: Colors.black12.withOpacity(0.1),
-                ),
-                child: Text12Normal(
-                  text: "${_current + 1}/${imageList.length}",
-                ),
+          ),
+          GestureDetector(
+            child: Container(
+              margin:  EdgeInsets.only(left: 25.w, top: 20.h),
+              padding: const EdgeInsets.all(5),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(500),
+                color: Colors.black12.withOpacity(0.1),
+              ),
+              child: const Icon(
+                Icons.threed_rotation_sharp,
+                color: AppColors.primaryThirdElement,
               ),
             ),
-            GestureDetector(
-              child: Container(
-                margin:  EdgeInsets.only(left: 25.w, top: 20.h),
-                padding: const EdgeInsets.all(5),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(500),
-                  color: Colors.black12.withOpacity(0.1),
-                ),
-                child: const Icon(
-                  Icons.threed_rotation_sharp,
-                  color: AppColors.primaryThirdElement,
-                ),
-              ),
-              // onTap: () => Navigator.push(
-              //   context,
-              //   PageTransition(
-              //     type: PageTransitionType.rightToLeftWithFade,
-              //     child: RealityViewer(),
-              //     childCurrent: widget,
-              //   ),
-              // ),
-            ),
-          ],
-        ),
+            // onTap: () => Navigator.push(
+            //   context,
+            //   PageTransition(
+            //     type: PageTransitionType.rightToLeftWithFade,
+            //     child: RealityViewer(),
+            //     childCurrent: widget,
+            //   ),
+            // ),
+          ),
+        ],
       ),
     );
   }

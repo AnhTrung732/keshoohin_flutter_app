@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:keshoohin_flutter_app/src/core/common_provider/common_provider.dart';
 import 'package:keshoohin_flutter_app/src/core/services/routing/app_routes_name.dart';
 import 'package:keshoohin_flutter_app/src/core/services/services_export.dart';
 import 'package:keshoohin_flutter_app/src/core/widgets/app_nested_navigation.dart';
@@ -19,12 +18,12 @@ import 'package:keshoohin_flutter_app/src/features/notification/presentation/not
 import 'package:keshoohin_flutter_app/src/features/search/presentation/search_page.dart';
 import 'package:riverpod/riverpod.dart';
 
-final parentNavigatorKey = GlobalKey<NavigatorState>();
-final homeTabNavigatorKey = GlobalKey<NavigatorState>();
-final collectionTabNavigatorKey = GlobalKey<NavigatorState>();
-final notiTabNavigatorKey = GlobalKey<NavigatorState>();
-final mapTabNavigatorKey = GlobalKey<NavigatorState>();
-final userTabNavigatorKey = GlobalKey<NavigatorState>();
+final parentNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'parentKey');
+final homeTabNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'hometab');
+final collectionTabNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'collection');
+final notiTabNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'noti');
+final mapTabNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'map');
+final userTabNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'user');
 
 Page getPage({
   required Widget child,
@@ -38,6 +37,7 @@ Page getPage({
 
 GoRoute welcomePageRoute() {
   return GoRoute(
+    parentNavigatorKey: parentNavigatorKey,
     path: APP_PAGE.welcome.toPath,
     name: APP_PAGE.welcome.toName,
     pageBuilder: (context, GoRouterState state) {
@@ -80,7 +80,6 @@ GoRoute searchPageRoute() => GoRoute(
 
 StatefulShellRoute appStatefulShellRoute(Ref ref) {
   return StatefulShellRoute.indexedStack(
-    parentNavigatorKey: parentNavigatorKey,
     pageBuilder: (
       BuildContext context,
       GoRouterState state,
@@ -112,12 +111,12 @@ StatefulShellRoute appStatefulShellRoute(Ref ref) {
                         idProduct: int.parse(state
                             .pathParameters[APP_PAGE.product.toParameter]!),
                       ),
-                  onExit: (context) {
-                    ref
-                        .read(hasProductBarControllerProvider.notifier)
-                        .removeProductBar();
-                    return true;
-                  },
+                  // onExit: (context) {
+                  //   ref
+                  //       .read(hasProductBarControllerProvider.notifier)
+                  //       .removeProductBar();
+                  //   return true;
+                  // },
                   routes: [
                     GoRoute(
                       path: APP_PAGE.productImages.toPath,

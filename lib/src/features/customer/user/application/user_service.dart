@@ -3,7 +3,6 @@ import 'package:keshoohin_flutter_app/src/features/customer/user/domain/detail/d
 import 'package:keshoohin_flutter_app/src/features/customer/user/infrastructure/user/user_provider.dart';
 import 'package:keshoohin_flutter_app/src/features/customer/user/infrastructure/user_detail/user_detail_provider.dart';
 
-import '../infrastructure/user/user.dart';
 
 class UserService {
   final Ref ref;
